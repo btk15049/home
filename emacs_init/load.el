@@ -1,0 +1,2 @@
+(load "a")
+(load "trash")
