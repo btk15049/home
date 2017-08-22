@@ -13,11 +13,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Verdana" :foundry "outline" :slant normal :weight normal :height 140 :width normal))))
+ '(default ((t (:family "Verdana" :foundry "outline" :slant normal :weight normal :height 132 :width normal))))
  '(hi-yellow ((t (:background "gray20" :foreground "snow"))))
  '(highlight ((t (:background "SteelBlue4" :foreground "snow")))))
 
-(set-frame-font "Monospace" 14)
+(set-frame-font "Monospace" 13)
 
 ;;s”Ô†‚ğ•\¦‚·‚éİ’è‚Æ‚»‚Ì•‚Ì’²®
 (global-linum-mode t)
@@ -52,20 +52,27 @@
 ;;‘½•ª‰¹‚ª–Â‚ç‚È‚­‚È‚éİ’è
 (setq ring-bell-function 'ignore)
 
+(setq initial-frame-alist
+      (append
+       '((top . 10)
+         (left . 520)
+	 (width .40)
+	 (height . 32);; (- (/ (x-display-pixel-height) (frame-char-height)) 100 ))
+         ) initial-frame-alist))
+
 ;;‘½•ª”wŒi‚Ìİ’è
 (if window-system (progn
-    (set-background-color "Black")
-    (set-foreground-color "LightGray")
-    (set-cursor-color "Gray")
-    (set-frame-size (selected-frame) 80 30 nil)
-    (set-frame-parameter nil 'alpha 80) ;“§–¾“x
-    ))
+		    (set-background-color "Black")
+		    (set-foreground-color "LightGray")
+		    (set-cursor-color "Gray")
+		    (set-frame-parameter nil 'alpha 90) ;“§–¾“x
+		    ))
 
 
 ;;if‚Ì’†‚Ì=‚ğŒx
 (add-hook 'c-mode-common-hook '(lambda ()(font-lock-add-keywords major-mode '(
-  ("[0-9]+" . font-lock-constant-face)
-  ))))
+									      ("[0-9]+" . font-lock-constant-face)
+									      ))))
 
 
 
