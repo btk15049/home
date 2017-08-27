@@ -65,18 +65,18 @@ struct fact_{
 
 
 // 組み合わせnCk (mod mod)
-// O(log n)
+// O(1)
 LL Comb(LL n,LL k){
     LL u=fact[n];
     LL d=(rfact[k]*rfact[n-k])%mod;
     return u*d%mod;
 }
 
-//O(log n)
+//O(1)
 LL Parm(LL n,LL k){
     LL u=fact[n];
-    LL d=(fact[n-k])%mod;
-    return (u*invMod(d))%mod;
+    LL d=rfact[n-k]%mod;
+    return u*d%mod;
 }
 
 //O(k)
