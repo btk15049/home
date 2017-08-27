@@ -50,11 +50,16 @@ VVLL init_comb(int n){
 // O(n)
 #define SZ 1000010
 LL fact[SZ];
+LL rfact[SZ];
 struct fact_{
     fact_(){
         fact[0]=1;
         for(int i=1;i<SZ;i++)
             fact[i]=fact[i-1]*i%mod;
+        rfact[SZ-1]=invMod(fact[SZ-1]);
+        for(int i=SZ-1;i>0;i--){
+            rfact[i-1]=rfact[i]*i%mod;
+        }
     }
 }fact_init;
 
@@ -63,8 +68,8 @@ struct fact_{
 // O(log n)
 LL Comb(LL n,LL k){
     LL u=fact[n];
-    LL d=(fact[k]*fact[n-k])%mod;
-    return (u*invMod(d))%mod;
+    LL d=(rfact[k]*rfact[n-k])%mod;
+    return u*d%mod;
 }
 
 //O(log n)
