@@ -57,8 +57,8 @@ struct seg_tree{
         auto &lg=seg[2*k+1];
         auto &rg=seg[2*k+2];
         if(v.flag&isB){
-            lg.flag=isB;lg.b=v.b;
-            rg.flag=isB;rg.b=v.b;
+            lg.flag=isB;lg.b=v.b;lg.c=0;
+            rg.flag=isB;rg.b=v.b;rg.c=0;
         }
         if(v.flag&isC){
             lg.flag|=isC;lg.c+=v.c;
