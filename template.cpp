@@ -9,6 +9,7 @@ struct cww{cww(){
     }
 }}star;
 #ifdef BTK
+#include<dvector.h>
 #define DEBUG if(1)
 #else
 #define DEBUG if(0)
