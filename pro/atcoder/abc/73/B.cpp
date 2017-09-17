@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long LL;
-
+ 
 #define CIN_ONLY if(1)
 struct cww{cww(){
     CIN_ONLY{
@@ -14,7 +14,7 @@ struct cww{cww(){
 #else
 #define DEBUG if(0)
 #endif
-
+ 
 #define fin "\n"
 #define FOR(i,bg,ed) for(int i=(bg);i<(ed);i++)
 #define REP(i,n) FOR(i,0,n)
@@ -34,6 +34,15 @@ istream& operator>>(istream &is,vector<T> &v){
 }
     
 int main(){
-    
+    LL res=0;
+    int N;
+    cin>>N;
+    REP(i,N){
+        int l,r;
+        cin>>l>>r;l--;
+        res+=r-l;
+ 
+    }
+    cout<<res<<endl;
     return 0;
 }
