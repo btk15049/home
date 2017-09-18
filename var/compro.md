@@ -328,8 +328,37 @@ std::tie(a,b,c) = t; //a,b,cにそれぞれ値が格納される
 ```
 
 #### auto
+C++ではコンパイル時の型推論的なものができる．  
+autoを型宣言の部分に書くとコンパイル時に勝手に判別してくれる．
+
+
+```
+std::vectro<int> v = {1,2,3};
+auto u = v; //vをコピー
+```
+
 
 #### lower_bound,upper_bound
+二分探索をする関数が存在する．配列の場合にはポインタ，vectorの場合にはイテレータが返ってくる．  
+std::distanceと組み合わせると配列の何番目かが取得できたりする．  
+絶対に忘れてはいけない注意点として，set,mapにはstd::lower_bound,upper_boundではなくメンバ関数のlower_bound,upper_boundを使うこと（計算量がO(N)になってしまう）  
+* lower_bound  
+v以上の最小の値のアドレスを返す．
+* upper_bound
+vより大きい最小の値のアドレスを返す．
+
+
+```
+std::vector<int> v = {1,2,3,4};
+auto l = std::lower_bound(v.begin(),v.end(),2)//戻り値がクッソ面倒なのでautoで受け取ることを推奨
+auto u = std::upper_bound(v.begin(),v.end(),2)//戻り値がクッソ面倒なのでautoで受け取ることを推奨
+
+std::cout << *l << std::endl; //2
+std::cout << *u << std::endl; //3
+
+std::cout << std::distance(v.begin(),l) << std::endl; //1
+std::cout << std::distance(v.begin(),u) << std::endl; //2
+```
 
 #### std::iota
 配列と初期値を与えると配列を初期値から始まる連番で初期化してくれる，
@@ -359,3 +388,5 @@ do{
 順列列挙に対する計算量は``O(N!)``なので安心して使ってよい．
 
 #### ラムダ式
+関数内に関数を埋め込める便利な奴．  
+説明すると長いので競技に使えそうなのは[ここ](http://snuke.hatenablog.com/entry/2015/12/06/005054)に載ってます
