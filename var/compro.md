@@ -110,7 +110,23 @@ cout << s[s.size()-1] << endl; //d (char型)
 cout << s.back() << endl; //d (char型)
 ```
 
-#### std::vector  
+#### テンプレートクラス
+ここから紹介するクラスはテンプレートクラスといって，様々な型(int,double)とかに対応している．  
+宣言方法がちょっと特殊なので紹介．  
+コンパイル時にコンパイラが動的に判別してそれ用の型を作ってくれる．
+
+```
+/* list<T> */
+
+// int型の要素をもつlistを生成
+list<int> a;
+
+// double型の要素をもつlistを生成
+list<double> b;
+
+```
+
+#### std::vector<T>
 C言語では、動的に配列を確保するときはmallocやcalloc,freeなどポインタを駆使していた.  
 もちろんバグも生まれるしメモリの開放を自分でしなければならないので思考の邪魔になってしまう.  
 C++では、動的な配列を扱うクラスをstd::vectorという形で提供している.  
@@ -147,8 +163,8 @@ vector<int> a = {0,1,2,3};
 a.push_back(4); // 0,1,2,3,4
 ```
 
-※pop_backは末尾削除、push_back()の逆
-※push_front,pop_frontもあるがO(n)かかるので非推奨
+※pop_backは末尾削除、push_back()の逆  
+※push_front,pop_frontもあるがO(n)かかるので非推奨  
 
 * copy
 
@@ -158,39 +174,105 @@ vector<int> b = {1,2,3};
 a=b; //aにbのコピーを代入
 ```
 
-#### stack
-いわゆるスタック.vectorみたいに動的に要素を確保してくれる.
-* top()
-最後に追加した要素の取得
+#### std::stack<T>
+いわゆるスタック.vectorみたいに動的に要素を確保してくれる.  
+* top  
+最後に追加した要素の取得  
 * push  
 要素追加
 * pop  
-最後に追加した要素の削除
-* size()  
+最後に追加した要素の削除  
+* size  
 
-#### queue
-いわゆるキュー.vectorみたいに動的に要素を確保してくれる.
-* front()
-最初に追加した要素の取得,stackと要素名が違うので注意.
+#### std::queue<T>
+いわゆるキュー.vectorみたいに動的に要素を確保してくれる.  
+* front  
+最初に追加した要素の取得,stackと要素名が違うので注意.  
 * push  
 要素追加
 * pop  
 要素
-* size()  
+* size  
 
-#### pair
+#### std::pair<S,T>
+簡単にいえば2つの要素を持つ構造体．  
+無理に使う必要はないけど他のライブラリ内で使われてたりするので知識として知っておく必要はある．  
+* first  
+S型の要素  
+* second  
+T型の要素  
 
-#### set 
+pairは比較可能なので，ソートとかができて使えると色々嬉しい（first,secondの順に評価する）
+
+
+#### std::set<S> 
 set(集合)クラス  
 値の挿入削除検索を対数時間で行える.  
-内部実装が平衡二分探索木なので、値は比較できるもの（int,string）でないとダメ.
+内部実装が平衡二分探索木なので、値は比較できるもの（intやstring）でないとダメ.  
+* insert(v)  
+値vを挿入する．同じ要素がある場合には何もしない  
+* count(v)  
+setにvが含まれるなら1,そうでないなら0を返す．  
+* erase(v)  
+vを消す．vが無いときはちょっと怖いので先にcountで判別をしましょう．  
+* lower_bound(v)  
+v以上の値でsetに含まれる最小のものを返す．イテレータとか出てきてちょっと複雑なのでここでは紹介だけ．
+* size()
 
+#### std::map<S,T>
+平衡二分探索木のキーと値を持ったやつ．疑似的な配列みたいな使い方ができる．  
+内部実装が平衡二分探索木なので、キーは比較できるもの（intやstring）でないとダメ.
+* []
+配列みたいに[]で参照できる．が，かなり注意が必要．  
+存在しない要素に[]でアクセスした場合はTの初期値で初期化される．  
 
-#### map
+```
+/*stringをキー */
+std::map<std::string,double> m;
 
+std::cout<< m.size() << std::endl; // 0
+std::cout<< m["btk"] << std::endl; // 0.0(double)
+std::cout<< m.size() << std::endl; // 1
 
+m["btk"] = 1.0;
+std::cout<< m["btk"] << std::endl; // 1.0(double)
+std::cout<< m.size() << std::endl; // 1
+```
 
+* count(v)  
+mapにキーをvとする要素が含まれるなら1,そうでないなら0を返す．  
+* erase(v)  
+キーvの要素を消す．無いときはちょっと怖いので先にcountで判別をしましょう．  
+* lower_bound(v)  
+キーがv以上の値でmapに含まれる最小のものを返す．イテレータとか出てきてちょっと複雑なのでここでは紹介だけ．  
+* size()
 
+#### include<algorithm>
+意味合い的にはsort以外はutilの方が正しそう．
+
+* std::sort  
+普通の配列やvectorをソートできる.内部実装はIntroソートだった気がする（クイックとヒープを組み合わせた安定ソート）  
+
+```
+int a[10];
+std::vector<int> b(10);
+
+/* 配列の最初と最後を引数に与えるとソートしてくれる */
+sort(a,a+10);
+sort(b.begin(),b.end());
+```
+
+* std::reverse  
+配列の中身をひっくり返してくれる．``std::sort``は昇順にソートするので降順にしたいときはsortしたあとこれを使うとよい．  
+引数は``std::``sortと一緒  
+
+#### ありがちなミス  
+大体のデータ構造のクラスには個数を取得する``size()``が存在するが，戻り値の型は``size_t``でほとんどの環境で``unsigned``であるため注意．
+
+```
+std::vector<int> v;
+std::cout << v.size()-1 << std::endl; //オーバーフローが発生する
+```
 
 ## 上級編
 #### vectorのテク
@@ -199,7 +281,7 @@ vector同士のswapはO(1)
 
 * assign  
 要素の再割当てみたいなことができる  
-使ってる領域を再利用するので少し効率がよい
+使ってる領域を再利用するので少し効率がよい  
 
 ```
 vector<int> v={1,2,3};
@@ -209,7 +291,7 @@ v = vector<int>(5,1);
 v.assign(5,1);
 ```
 * vectorには比較関数が定義されている  
-辞書順比較をしてくれる
+辞書順比較をしてくれる  
 
 ```
 vector<int> a={1,2,3};
@@ -223,14 +305,57 @@ a>b //true
 ```
 
 
-#### tuple  
+#### std::tuple  
+pairを2要素から複数要素にしたver  
+``tuple<int,double,string>``みたいに使う．  
+pairと同じく辞書順比較してくれるので便利  
+値の取得方法がかなり特殊  
+
+```
+
+std::tuple<int,std::string,double> t = {1,"btk",2.0};
+
+/* get<i> を使う場合 (iは定数でないとダメ) */
+std::cout << std::get<0>(t) << endl; //1(int)
+std::cout << std::get<1>(t) << endl; //btk(string)
+std::cout << std::get<2>(t) << endl; //2.0(double)
+
+/* tieを使う場合 */
+int a;
+std::string b;
+double c;
+std::tie(a,b,c) = t; //a,b,cにそれぞれ値が格納される
+```
 
 #### auto
 
 #### lower_bound,upper_bound
 
-#### iota
+#### std::iota
+配列と初期値を与えると配列を初期値から始まる連番で初期化してくれる，
+```
+std::vector<int> v(5);
+std::iota(v.begin(),v.end(),1); //{1,2,3,4,5}
+std::iota(v.begin(),v.end(),0); //{0,1,2,3,4}
 
-#### next_permutation
+
+```
+
+#### std::next_permutation  
+順列を与えると辞書順で次の順列に進める．戻り値はboolで辞書順で最も大きい順列を与えた場合はfalseが返る．なので，以下のような運用が可能.  
+
+```
+/*iotaを用いて順列{1,2,3,4,5}を生成*/
+std::vector<int> v(5);
+std::iota(v.begin(),v.end(),1);
+
+/* {1,2,3,4,5}からなる順列の全列挙 */
+do{
+ /*順列に対する処理*/
+}while(v.begin(),v.end());
+
+```
+
+順列列挙に対する計算量は``O(N!)``なので安心して使ってよい．
 
 #### ラムダ式
