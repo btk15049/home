@@ -109,14 +109,55 @@ VLL list_mod_inverse(LL n){
 
 //a^n (mod mod)
 //O(log a)
-LL pow_mod(LL a,LL n){
+LL pow_mod(LL a,LL n,int M=mod){
     LL res=1;
-    a%=mod;
+    a%=M;
     while(n){
         if(n&1)
-            res=(res*a)%mod;
-        a=(a*a)%mod;
+            res=(res*a)%M;
+        a=(a*a)%M;
         n>>=1;
     }
     return res;
+}
+
+
+
+LL POW(LL a,LL n){
+    LL ret=1;
+    REP(i,n)ret*=a;
+    return ret;
+}
+
+typedef pair<LL,LL> P;
+
+/*
+  n! mod pp : pp=p^n
+*/
+P calc(LL n,LL p,LL pp){
+    if(n<p)return {fact[n],0};
+    auto nxt=calc(n/p,p,pp);
+    LL numpp=n/pp;
+    LL x=pow_mod(fact[pp-1],numpp,pp);
+    x*=fact[n%pp];
+    return {x*nxt.first%pp,n/p+nxt.second};
+}
+
+
+/*
+  nCk mod p^cnt
+*/
+LL comb(LL n,LL k,LL p,int cnt){
+    LL pp=POW(p,cnt);
+    set_fact(p,pp);
+    auto u = calc(n,p,pp);
+    auto d1= calc(k,p,pp);
+    auto d2= calc(n-k,p,pp);
+    P d={d1.first*d2.first%pp,d1.second+d2.second};
+    LL ret=u.first*inv(d.first,pp)%pp;
+    REP(i,u.second-d.second){
+	ret*=p;
+	ret%=pp;
+    }
+    return ret;
 }

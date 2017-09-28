@@ -1,21 +1,22 @@
-#���v���p���C�u����
-�����ɂ�verify�������Ƃ����ڂ��Ă��܂��D
-���R�Ɏg���č\���܂��񂪓���͕ۏ؂��܂���̂ł��̃��C�u�����̂����Ń��[�g���������Ƃ��Ă���ؐӔC�͕����܂���D
+#競プロ用ライブラリ
+ここにはverifyした問題とかを載せています．
+自由に使って構いませんが動作は保証しませんのでこのライブラリのせいでレートが落ちたとしても一切責任は負いません．
 
-## ������n
+## 文字列系
 * KMP.hpp  
-�ŏ������̎擾 : ARC77 F  
+最小周期の取得 : ARC77 F  
 
-## ���_�n
+## 数論系
 * modulo.hpp  
-p^n mod�ł�nCk : ICL2015Finals(CF) J  
+p^n modでのnCk : ICL2015Finals(CF) J  
 
-## �O���t
+## グラフ
 * centroid_decomposition.cpp  
-�؂̏d�S���� : ICL2015Finals(CF) D , CF190 d1C  
+木の重心分解 : ICL2015Finals(CF) D , CF190 d1C  
 
 * heavy_light_decomposition.cpp  
-HL���� : yukicoder No529  
+HL分解 : yukicoder No529  
 
-## �Z�O�����g��
+## セグメント木
 * SegTree.hpp
+
