@@ -6,3 +6,8 @@
 * KMP.h  
 Å¬ŽüŠú‚ÌŽæ“¾ : ARC77 F  
 
+## ”˜_Œn
+* modulo.h  
+p^n mod‚Å‚ÌnCk : ICL2015Finals(CF) J  
+
+## 
