@@ -2,16 +2,16 @@
 using namespace std;
 typedef long long LL;
 
+#ifdef BTK
+#include<dvector.h>
+#define DEBUG if(1)
+#else
 #define CIN_ONLY if(1)
 struct cww{cww(){
     CIN_ONLY{
         ios::sync_with_stdio(false);cin.tie(0);
     }
 }}star;
-#ifdef BTK
-#include<dvector.h>
-#define DEBUG if(1)
-#else
 #define DEBUG if(0)
 #endif
 
