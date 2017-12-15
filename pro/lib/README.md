@@ -5,6 +5,8 @@
 ## 文字列系
 * KMP.hpp  
 最小周期の取得 : ARC77 F  
+* RollHash.hpp
+ロリハ : CSA12
 
 ## 数論系
 * modulo.hpp  
@@ -19,4 +21,3 @@ HL分解 : yukicoder No529
 
 ## セグメント木
 * SegTree.hpp
-
