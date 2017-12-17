@@ -27,10 +27,14 @@ LL extgcd(LL a, LL b, LL &x, LL &y) {
 
 // mを法とするaの逆元
 // O(log a)
-LL invMod(LL a) {
-    LL x, y;
-    if (extgcd(a, mod, x, y) == 1)return (x + mod) % mod;
-    else return 0; // unsolvable
+inline LL invMod(LL a, LL m=mod){
+  LL b = m, u = 1, v = 0;
+  while (b) {
+    LL t = a / b;
+    swap(a -= t * b, b);
+    swap(u -= t * v, v);
+  }
+  return (u % m + m) % m;
 }
 
 // iCjの組み合わせを全列挙してvectorに格納
