@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+
 typedef long long LL;
-typedef vector<LL> VLL;
-typedef vector<VLL> VVLL;
-const int MOD=(int)(1e9+7);
+typedef vector<LL> V;
+constexpr int MOD=(int)(1e9+7);
 // aとbの最大公約数
 // O(log (a+b) )
 LL gcd(LL a,LL b){
@@ -12,7 +11,6 @@ LL gcd(LL a,LL b){
 }
 
 // aとbの最小公倍数
-// O(log (a+b) )
 LL lcm(LL a,LL b){
     return (a/gcd(a,b))*b;
 }
@@ -40,7 +38,7 @@ inline LL invMod(LL a, LL m=mod){
 // iCjの組み合わせを全列挙してvectorに格納
 // (0<=j<=i<=n)
 // O(n^2)
-VVLL init_comb(int n){
+vector<V> init_comb(int n){
     n++;
     VVLL res(n,VLL(n,0));
     for(int i=0;i<n;i++)res[i][0]=1;
@@ -52,7 +50,7 @@ VVLL init_comb(int n){
 
 // 階乗
 // O(n)
-#define SZ 1000010
+constexpr int SZ = 1123456;
 LL fact[SZ];
 LL rfact[SZ];
 struct fact_{
@@ -103,8 +101,8 @@ LL ParfectPerm(LL n){
 
 // 1~nの逆元を求める(mod mod)
 // O(n)で列挙
-VLL list_mod_inverse(LL n){
-    VLL inv(n + 1);
+V list_mod_inverse(LL n){
+    V inv(n + 1);
     inv[1] = 1;
     for (int i = 2; i <= n; ++i)
         inv[i] = inv[mod % i] * (mod - mod / i) % mod;
@@ -125,8 +123,6 @@ LL pow_mod(LL a,LL n,int M=mod){
     return res;
 }
 
-
-
 LL POW(LL a,LL n){
     LL ret=1;
     REP(i,n)ret*=a;
@@ -135,9 +131,7 @@ LL POW(LL a,LL n){
 
 typedef pair<LL,LL> P;
 
-/*
-  n! mod pp : pp=p^n
-*/
+//n! mod pp : pp=p^n
 P calc(LL n,LL p,LL pp){
     if(n<p)return {fact[n],0};
     auto nxt=calc(n/p,p,pp);
@@ -148,9 +142,7 @@ P calc(LL n,LL p,LL pp){
 }
 
 
-/*
-  nCk mod p^cnt
-*/
+//nCk mod p^cnt
 LL comb(LL n,LL k,LL p,int cnt){
     LL pp=POW(p,cnt);
     set_fact(p,pp);
