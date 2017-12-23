@@ -1,9 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define FOR(i,bg,ed) for(int i=(bg);i<(ed);i++)
+#define REP(i,n) FOR(i,0,n)
+
 typedef long long LL;
 typedef vector<LL> V;
-constexpr int MOD=(int)(1e9+7);
+constexpr int mod=(int)(1e9+7);
 // aとbの最大公約数
 // O(log (a+b) )
 LL gcd(LL a,LL b){
@@ -35,18 +38,6 @@ inline LL invMod(LL a, LL m=mod){
   return (u % m + m) % m;
 }
 
-// iCjの組み合わせを全列挙してvectorに格納
-// (0<=j<=i<=n)
-// O(n^2)
-vector<V> init_comb(int n){
-    n++;
-    VVLL res(n,VLL(n,0));
-    for(int i=0;i<n;i++)res[i][0]=1;
-    for(int i=1;i<n;i++)
-        for(int j=1;j<=i;j++)
-            res[i][j]=(res[i-1][j]+res[i-1][j-1])%mod;
-    return res;
-}
 
 // 階乗
 // O(n)
@@ -123,14 +114,8 @@ LL pow_mod(LL a,LL n,int M=mod){
     return res;
 }
 
-LL POW(LL a,LL n){
-    LL ret=1;
-    REP(i,n)ret*=a;
-    return ret;
-}
-
+/* TODO [n choose k] for arbitary mod
 typedef pair<LL,LL> P;
-
 //n! mod pp : pp=p^n
 P calc(LL n,LL p,LL pp){
     if(n<p)return {fact[n],0};
@@ -144,7 +129,8 @@ P calc(LL n,LL p,LL pp){
 
 //nCk mod p^cnt
 LL comb(LL n,LL k,LL p,int cnt){
-    LL pp=POW(p,cnt);
+    LL pp=1;
+    REP(i,cnt)pp*=cnt;
     set_fact(p,pp);
     auto u = calc(n,p,pp);
     auto d1= calc(k,p,pp);
@@ -157,3 +143,4 @@ LL comb(LL n,LL k,LL p,int cnt){
     }
     return ret;
 }
+*/

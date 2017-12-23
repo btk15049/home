@@ -3,8 +3,20 @@ using namespace std;
 
 //heavy light decomposition
 namespace hld{
-    constexpr int SZ = 200010;
-    int mem[4][SZ];
+    constexpr int BUF = 2123456*4;
+    int mem[BUF];
+    int ptr = 0;
+
+    //reset pointer for multi testcases 
+    inline void reset(){
+        ptr = 0;
+    }
+    inline int* get(const int size){
+        ptr+=size;
+        return mem+ptr-size;
+    }
+    
+    
 };
 typedef vector<int> V;
 typedef vector<V> Graph;
@@ -41,14 +53,13 @@ private:
 	}
     }
 public:
-    HLD(Graph *tree,int root=0)
-	:treesize(hld::mem[0]),
-	 tree(tree),size(0),
-	 group(hld::mem[1]),
-	 id(hld::mem[0]),
-	 par(hld::mem[2]),
-	 bg(hld::mem[3])
-    {
+    HLD(Graph *tree,int root=0):tree(tree),size(0){
+        int n = (*tree).size();
+        id = treesize = hld::get(n+10);
+        group = hld::get(n+10);
+        par = hld::get(n+10);
+        bg = hld::get(n+10);
+        
 	setTreeSize(root);
 	int i=0;
 	par[size]=-1;
@@ -72,6 +83,5 @@ public:
         }
         res.push_back(minmax(id[v],id[u]));
         return res;
-    }
-    
+    }    
 };

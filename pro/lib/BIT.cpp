@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+using namespace std;
 namespace BIT_{
     using RET = int;
     constexpr int BUF = 1123456;
@@ -6,7 +7,7 @@ namespace BIT_{
     RET t[BUF];
     inline RET* get(const int size){
         ptr+=size;
-        return &(t[ptr-size]);
+        return t+ptr-size;
     }
 }
 //[1,n],0は扱えない!
@@ -14,7 +15,9 @@ struct BIT{
     using T=BIT_::RET;
     T* bit;
     int sz;
-    BIT(int n):bit(BIT_::get(n+10)),sz(n){}
+    BIT(int n):bit(BIT_::get(n+10)),sz(n){
+        fill(bit,bit+n+10,0);
+    }
     T sum(int i){
         T s=0;
         while(i>0){

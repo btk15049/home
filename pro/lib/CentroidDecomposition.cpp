@@ -1,28 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 typedef long long LL;
-
 #define pb push_back
-template <typename T>inline bool chmax(T &l,T r)
-{bool a=l<r;if(a)l=r;return a;}
+template <typename T>inline bool chmax(T &l,T r){bool a=l<r;if(a)l=r;return a;}
 
 constexpr int SIZE = 112345;
-
 int a[SIZE];
 int b[SIZE];
-int c[SIZE];
-int used[SIZE];
 
 typedef vector<int> V;
 typedef vector<V> VV;
 namespace CD{
+    int used[SIZE];
     struct centroid{
         int size;
         int par;
         V   cld;
         V   vex;
-    }node[1123456];
+    }node[SIZE];
     stack<int> st;
     int dfs(int v,int p,int all,VV &g,int &tar,int& ans){
         int cld_size=1;
