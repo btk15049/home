@@ -31,7 +31,7 @@ private:
 	else return par[x] = find(par[x]);
     }
 public:
-    UF(int n,int *par,int *rank):par(_DSU::get(n+10)),rank(_DSU::get(n+10)){
+    UF(int n):par(_DSU::get(n+10)),rank(_DSU::get(n+10)){
 	REP(i,n)par[i] = i,rank[i] = 0;
     }
     bool unite(int x, int y){
