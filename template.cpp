@@ -1,4 +1,6 @@
+#ifndef VS
 #include<bits/stdc++.h>
+#endif
 using namespace std;
 typedef long long LL;
 
