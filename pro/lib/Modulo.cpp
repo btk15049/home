@@ -66,14 +66,14 @@ LL Comb(LL n,LL k){
 }
 
 //O(1)
-LL Parm(LL n,LL k){
+LL Perm(LL n,LL k){
     LL u=fact[n];
     LL d=rfact[n-k]%mod;
     return u*d%mod;
 }
 
 //O(k)
-LL Parm_fast(LL n,LL k){
+LL Perm_fast(LL n,LL k){
     LL res=1;
     for(LL i = n; i > n-k; i--)res=(res*i)%mod;
        return res;
