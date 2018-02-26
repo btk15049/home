@@ -1,15 +1,7 @@
+#ifndef VS 
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long LL;
-#define FOR(i,bg,ed) for(int i=(bg);i<(ed);i++)
-#define REP(i,n) FOR(i,0,n)
-#define ALL(v) (v).begin(),(v).end()
-#define fi first
-#define se second
-#define pb push_back
-typedef vector<int> V;
-typedef vector<V> Graph;
-const LL INF = 1e9;
+#endif
 
 namespace _DSU{
     constexpr int BUF = 212345*2;
@@ -32,7 +24,9 @@ private:
     }
 public:
     UF(int n):par(_DSU::get(n+10)),rank(_DSU::get(n+10)){
-	REP(i,n)par[i] = i,rank[i] = 0;
+	for(int i = 0;i<n;i++){
+            par[i] = i,rank[i] = 0;
+        }
     }
     bool unite(int x, int y){
 	x = find(x);y = find(y);
