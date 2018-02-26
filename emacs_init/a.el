@@ -34,7 +34,7 @@
          (local-file  (file-relative-name
                        temp-file
                        (file-name-directory buffer-file-name))))
-    (list "g++" (list  "-std=c++11" "-fsyntax-only" local-file))))
+    (list "g++" (list "-DBTK" "-std=c++14" "-fsyntax-only" local-file))))
 (push '("\\.cpp$" flymake-cc-init) flymake-allowed-file-name-masks)
 (add-hook 'c++-mode-hook
           '(lambda ()
