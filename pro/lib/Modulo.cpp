@@ -1,5 +1,7 @@
+#ifndef VS 
 #include <bits/stdc++.h>
 using namespace std;
+#endif
 
 #define FOR(i,bg,ed) for(int i=(bg);i<(ed);i++)
 #define REP(i,n) FOR(i,0,n)
@@ -73,7 +75,7 @@ LL Perm(LL n,LL k){
 }
 
 //O(k)
-LL Perm_fast(LL n,LL k){
+LL PermWithFast(LL n,LL k){
     LL res=1;
     for(LL i = n; i > n-k; i--)res=(res*i)%mod;
        return res;

@@ -18,25 +18,25 @@ namespace _DSU{
 class UF{
 private:
     int *par,*rank;
+    public:
     int find(int x){
-	if (par[x] == x) return x;
-	else return par[x] = find(par[x]);
+        if (par[x] == x) return x;
+        else return par[x] = find(par[x]);
     }
-public:
     UF(int n):par(_DSU::get(n+10)),rank(_DSU::get(n+10)){
 	for(int i = 0;i<n;i++){
             par[i] = i,rank[i] = 0;
         }
     }
     bool unite(int x, int y){
-	x = find(x);y = find(y);
+    	x = find(x);y = find(y);
 	if (x == y)return false;
 	if (rank[x] < rank[y])swap(x,y);
-        par[y] = x;
-        if (rank[x] == rank[y])rank[x]++;
+    par[y] = x;
+    if (rank[x] == rank[y])rank[x]++;
 	return true;
     }
     bool same(int x, int y){
-	return find(x) == find(y);
+        return find(x) == find(y);
     }
 };
