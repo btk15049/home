@@ -25,6 +25,14 @@ HL分解 : yukicoder No529
 
 ## セグメント木
 * SegTree.cpp
+* AbstractSegmentTree.cpp  
+抽象化セグ木 : RUPC2018 day2 J(遅延),K
+
+## スパーステーブル
+* StaticRMQ.cpp  
+静的RMQを処理するデータ構造 : ICPC2017模擬地区予選F, CodeChef FRMQ ,CF ECR41 F
+SparseTable : メモリ気にしなくていいならこっち
+RMQ : 空間O(n)，構築O(n)ならこっち．内部はブロックサイズ16のブロック分割(スパーステーブル+サイズ4の平方分割)
 
 ## その他
 * Polyomino.cpp
