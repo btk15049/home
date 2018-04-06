@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 /*
-  sa[0]=n //‹ó•¶š—ñ
-  lcp[i]:=suffix[sa[i]]‚Æsuffix[sa[i+1]]‚Ì‹¤’Ê‚‚³
+  sa[0]=n //ç©ºæ–‡å­—åˆ—
+  lcp[i]:=suffix[sa[i]]ã¨suffix[sa[i+1]]ã®å…±é€šé«˜ã•
  */
 
 namespace latte{
