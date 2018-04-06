@@ -30,7 +30,7 @@ HL分解 : yukicoder No529
 
 ## スパーステーブル
 * StaticRMQ.cpp  
-静的RMQを処理するデータ構造 : ICPC2017模擬地区予選F, CodeChef FRMQ ,CF ECR41 F
+静的RMQを処理するデータ構造 : ICPC2017模擬地区予選F, CodeChef FRMQ ,CF ECR41 F  
 SparseTable : メモリ気にしなくていいならこっち
 RMQ : 空間O(n)，構築O(n)ならこっち．内部はブロックサイズ16のブロック分割(スパーステーブル+サイズ4の平方分割)
 
