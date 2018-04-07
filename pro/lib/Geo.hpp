@@ -95,7 +95,7 @@ namespace geo {
     }
 
     //caution: have to use isintersected_L_L before this function
-    IL P cross_point_L_L(L p, L q) {
+    IL P cross_L_L(L p, L q) {
         DCl(a,b,p);
         D d1 = signed_distance_P_L(a, q);
         D d2 = signed_distance_P_L(b, q);
