@@ -27,7 +27,7 @@ namespace quad{
 
 	void update(const int l, const int r){
 		for(int id = (l / b) * b ; id < r ; id+=b){
-			if(id > l || r < id + b){
+			if(id < l || r < id + b){
 				baby_update(id ,id + b, l, r);
 			}
 			else{
@@ -57,7 +57,7 @@ namespace quad{
 
 	void get(const int l, const int r){
 		for(int id = (l / b) * b ; id < r ; id+=b){
-			if(id > l || r < id + b){
+			if(id < l || r < id + b){
 				baby_get(id ,id + b, l, r);
 			}
 			else{
