@@ -1,1 +1,1 @@
-#include "codeforces/div2/510/F.cpp"
+#include ""
