@@ -45,5 +45,4 @@ struct BIT{
             }
         return x+1;
     }
-};   
-    
+};
