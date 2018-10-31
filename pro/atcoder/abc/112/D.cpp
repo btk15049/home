@@ -1,4 +1,4 @@
-//https://beta.atcoder.jp/contests/abc112/tasks/abc112_a
+//https://beta.atcoder.jp/contests/abc112/tasks/abc112_d
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -8,7 +8,8 @@ typedef long long LL;
 #define DEBUG if(1)
 #else
 #define CIN_ONLY if(1)
-struct cww {cww() {CIN_ONLY{ios::sync_with_stdio(false); cin.tie(0);}}}star;
+struct cww {cww() {CIN_ONLY{ios::sync_with_stdio(false); cin.tie(0);}}
+}star;
 #define DEBUG if(0)
 #endif
 
@@ -20,15 +21,17 @@ template <typename T>istream& operator>>(istream &is, vector<T> &v){for (auto &i
 
 class range {private: struct I { int x; int operator*() { return x; }bool operator!=(I& lhs) { return x<lhs.x; }void operator++() { ++x; } }; I i, n;public:range(int n) :i({ 0 }), n({ n }) {}range(int i, int n) :i({ i }), n({ n }) {}I& begin() { return i; }I& end() { return n; }};
 
-int c[]={1,2,3};
+LL n,m;
+
+LL ret = 1;
 int main() {
-    int n;
-    cin>>n;
-    if(n==1)cout<<"Hello World"<<endl;
-    else {
-        int a,b;
-        cin>>a>>b;
-        cout<<a+b<<endl;
+    cin>>n>>m;
+    for(LL i=1;i*i<=m;i++){
+        if(m%i==0){
+            if(n<=m/i)chmax(ret,i);
+            if(n<=i)chmax(ret,m/i);
+        }
     }
+    cout<<ret<<endl;
     return 0;
 }
