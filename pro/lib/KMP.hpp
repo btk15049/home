@@ -12,7 +12,7 @@ int kmp_search(string S,string word,V& table){
     if(i==m)return j-m;
     else return -1;
 }
- 
+
 
 V kmp_table_build(string word){
     int n=word.size()+1;
