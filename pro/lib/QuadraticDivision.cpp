@@ -11,7 +11,7 @@ namespace quad{
 		for(int i = lb; i < ub ; i++){
 			if(l<=i&&i<r){
 				// inner block
-				
+
 			}
 			else{
 				// outer block
@@ -41,7 +41,7 @@ namespace quad{
 		for(int i = lb; i < ub ; i++){
 			if(l<=i&&i<r){
 				// inner block
-				
+
 			}
 			else{
 				// outer block
@@ -65,5 +65,4 @@ namespace quad{
 			}
 		}
 	}
-
 }
