@@ -3,7 +3,7 @@
 自由に使って構いませんが動作は保証しませんのでこのライブラリのせいでレートが落ちたとしても一切責任は負いません．
 
 ## 文字列系
-* KMP.cpp  
+* KMP.hpp  
 最小周期の取得 : ARC77 F  
 * RollHash.cpp  
 ロリハ : CSA12
@@ -20,10 +20,10 @@ p^n modでのnCk : ICL2015Finals(CF) J
 重心分解を使ったパスの列挙的なhoge : みんプロ2018本戦 C
 * HeavyLightDecomposition.cpp  
 HL分解 : yukicoder No529  
-* PersittentTrie.cpp  
-永続トライ木（配列） : CF457 E
-* TwoVertex.cpp
+* TwoVertex.cpp  
 関節点列挙，二重頂点連結成分分解，block cut tree : ECR42 F , AOJ 関節点
+* LowestCommonAncestor.cpp  
+ダブリング使ったLCA，頂点rを根とする頂点uvのLCAも算出できる
 
 ## セグメント木
 * SegTree.cpp
@@ -36,6 +36,23 @@ HL分解 : yukicoder No529
 SparseTable : メモリ気にしなくていいならこっち  
 RMQ : 空間O(n)，構築O(n)．内部はブロックサイズ16のブロック分割(スパーステーブル+サイズ4の平方分割)
 
+## 永続
+* PersittentTrie.cpp  
+永続トライ木（配列） : CF457 E
+
+## 平方分割テンプレート
+* QuadrasticDivision.cpp
+
+## 自前ヒープ
+* IntervalHeap.cpp  
+最小値最大値両方使える
+
+## 累積和
+* RectangleSum.cpp  
+二次元累積和 : ARC089 D
+
 ## その他
 * Polyomino.cpp
 サイズkのポリオミノの列挙 : SRM652 Div1 Med
+
+
