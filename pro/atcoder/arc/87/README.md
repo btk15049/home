@@ -1,9 +1,9 @@
 # AtCoder Regular Contest 87
-writer:
+writer:sugim48
 ## C
-感想
+数える
 ## D
-感想
+典型過ぎないか
 ## E
 あとはトライ木を作って空の木のGrundyをxorすればウェイ．
 ## F
