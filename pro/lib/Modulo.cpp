@@ -116,6 +116,23 @@ LL pow_mod(LL a,LL n,int M=mod){
     return res;
 }
 
+// 中国剰余定理
+// x%mi = bi から {x%lcm(m),lcm(m)} を求める
+// リターン値を (r, m) とすると解は x ≡ r (mod. m)
+// 解なしの場合は (0, -1) をリターン
+pair<LL, LL> CRT(const vector<LL> &b, const vector<LL> &m) {
+  LL r = 0, M = 1;
+  for(int i=0;i<(int)b.size();i++){
+    LL p, q;
+    LL d = extgcd(M, m[i], p, q); // p is inv of M/d (mod. m[i]/d)
+    if ((b[i] - r) % d != 0) return {0,-1};
+    LL tmp = (b[i] - r) / d * p % (m[i]/d);
+    r += M * tmp;
+    M *= m[i]/d;
+  }
+  return {(r%M+M)%M, M};
+}
+
 /* TODO [n choose k] for arbitary mod
 typedef pair<LL,LL> P;
 //n! mod pp : pp=p^n
