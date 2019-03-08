@@ -1,17 +1,17 @@
 # AtCoder Grand Contest 019
 writer:tourist
 ## A
-�͂�
+はい
 ## B
-�D��  
-�Ȃ���Palindromic Tree�̎g���������������ł���
+好き  
+なぜかPalindromic Treeの使い方を少し理解できた
 ## C
-��������ɂ͌����Ȃ����
+解ける問題には見えないよね
 ## D
-���̂��炢���Ƃɂ���30���Ŏ���������
+このぐらい実家にして30分で実装したい
 ## E,F
-�ǂ�łȂ����ǔz�_���Ă�̂ł܂�
+読んでないけど配点壊れてるのでまあ
 
-### �V�����w�񂾂���
-* palindromic tree���g���Ε�����̉񕶁i��ސ�O(N)�j��񋓂ł��Ăقق��̂ق�
+### 新しく学んだこと
+* palindromic treeを使えば部分列の回文（種類数O(N)）を列挙できてほほいのほい
 

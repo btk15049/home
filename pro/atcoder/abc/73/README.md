@@ -1,12 +1,12 @@
 # AtCoder Beginner Contest 73
 writer:namonakiacc
 ## A
-typo‚É‹C‚ğ‚Â‚¯‚æ‚¤‚Ëi1WAj
+typoã«æ°—ã‚’ã¤ã‘ã‚ˆã†ã­ï¼ˆ1WAï¼‰
 ## B
 hai
 ## C
 hai
 ## D
-next_permutation.‚»‚ñ‚È‚à‚Ì‚à‚ ‚è‚Ü‚µ‚½‚Ë(bitDP‚ğ‚µ‚½Šç)
+next_permutation.ãã‚“ãªã‚‚ã®ã‚‚ã‚ã‚Šã¾ã—ãŸã­(bitDPã‚’ã—ãŸé¡”)
 
 

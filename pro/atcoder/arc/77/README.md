@@ -1,28 +1,28 @@
 # AtCoder Regular Contest 77
 writer:n_vip
 ## C
-�͂�
+はい
 ## D
-�͂�
+はい
 ## E
-�͂�
+はい
 ## F
-������
-### �V�����w�񂾂���
-* ������S��k�������炵��������S'�ɂ��āCS[k+1:n]==S'[1:k]�����藧�Ȃ�S�͒���k�̎���������.
+いいえ
+### 新しく学んだこと
+* 文字列Sとk文字ずらした文字列S'について，S[k+1:n]==S'[1:k]が成り立つならSは長さkの周期を持つ.
 
 ```
-(�ؖ�)  
+(証明)  
 S[1]==S[k+1]  
 S[2]==S[k+2]  
 ...  
 S[k]==S[2k]  
 S[k+1]==S[2k+1]  
-�܂Ƃ߂�ƁCS[i]==S[i+nk]
+まとめると，S[i]==S[i+nk]
 ```
 
-* KMP�@���g���Ɛ��`�ōŏ����������߂���  
-�Q�l:http://snuke.hatenablog.com/entry/2015/04/05/184819  
-KMP�@�Ńr���h�����e�[�u��t[i]��S[1:i]�̐ړ����Ɛڔ�����``|S[1:i]|�����̒���``�̍ő勤�ʕ�����Ƃ����̂��|�C���g
+* KMP法を使うと線形で最小周期が求められる  
+参考:http://snuke.hatenablog.com/entry/2015/04/05/184819  
+KMP法でビルドしたテーブルt[i]はS[1:i]の接頭辞と接尾辞の``|S[1:i]|未満の長さ``の最大共通文字列というのがポイント
 
 
