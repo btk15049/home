@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>btk&#39;s library: Template.cpp ソースファイル</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">btk&#39;s library
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('../../',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Template.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/dfe/_template_8cpp.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include&lt;bits/stdc++.h&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using namespace </span>std;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define TEMPLATE</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifdef BTK</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define DEBUG if(1)</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#else</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define CIN_ONLY if(1)</span></div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="../../d8/d22/structcww.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="../../d8/d22/structcww.html">cww</a> {<a class="code" href="../../d8/d22/structcww.html">cww</a>() {CIN_ONLY{ios::sync_with_stdio(<span class="keyword">false</span>); cin.tie(0);}}}star;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define DEBUG if(0)</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define ALL(v) (v).begin(),(v).end()</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define REC(ret, ...) std::function&lt;ret (__VA_ARGS__)&gt;</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;<span class="keyword">inline</span> <span class="keywordtype">bool</span> chmin(T &amp;l, T r){<span class="keywordtype">bool</span> a = l&gt;r; <span class="keywordflow">if</span> (a)l = r; <span class="keywordflow">return</span> a;}</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;<span class="keyword">inline</span> <span class="keywordtype">bool</span> chmax(T &amp;l, T r){<span class="keywordtype">bool</span> a = l&lt;r; <span class="keywordflow">if</span> (a)l = r; <span class="keywordflow">return</span> a;}</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;istream&amp; operator&gt;&gt;(istream &amp;is, vector&lt;T&gt; &amp;v){<span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;it : v)is &gt;&gt; it;<span class="keywordflow">return</span> is;}</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="../../d1/d4f/classreverse__range.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d1/d4f/classreverse__range.html">reverse_range</a> {<span class="keyword">private</span>:<span class="keyword">struct </span>I {<span class="keywordtype">int</span> x;<span class="keywordtype">int</span> <a class="code" href="../../de/dbc/_mod_int_8cpp.html#a64ac736be44d2c598b9f4b6a68a7e223">operator*</a>() {<span class="keywordflow">return</span> x-1;}<span class="keywordtype">bool</span> operator!=(I&amp; lhs) {<span class="keywordflow">return</span> x&gt;lhs.x;}<span class="keywordtype">void</span> operator++() {--x;}};I i, n;<span class="keyword">public</span>:<a class="code" href="../../d1/d4f/classreverse__range.html">reverse_range</a>(<span class="keywordtype">int</span> n) :i({ 0 }), n({ n }){}<a class="code" href="../../d1/d4f/classreverse__range.html">reverse_range</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> n) :i({ i }), n({ n }){}I&amp; begin() {<span class="keywordflow">return</span> n;}I&amp; end() {<span class="keywordflow">return</span> i;}};</div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="../../d2/d1f/classrange.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d2/d1f/classrange.html">range</a> {<span class="keyword">private</span>: <span class="keyword">struct </span>I { <span class="keywordtype">int</span> x; <span class="keywordtype">int</span> <a class="code" href="../../de/dbc/_mod_int_8cpp.html#a64ac736be44d2c598b9f4b6a68a7e223">operator*</a>() { <span class="keywordflow">return</span> x; }<span class="keywordtype">bool</span> operator!=(I&amp; lhs) { <span class="keywordflow">return</span> x&lt;lhs.x; }<span class="keywordtype">void</span> operator++() { ++x; } }; I i, n;<span class="keyword">public</span>:<a class="code" href="../../d2/d1f/classrange.html">range</a>(<span class="keywordtype">int</span> n) :i({ 0 }), n({ n }) {}<a class="code" href="../../d2/d1f/classrange.html">range</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> n) :i({ i }), n({ n }) {}I&amp; begin() { <span class="keywordflow">return</span> i; }I&amp; end() { <span class="keywordflow">return</span> n; }<a class="code" href="../../d1/d4f/classreverse__range.html">reverse_range</a> operator!(){<span class="keywordflow">return</span> <a class="code" href="../../d1/d4f/classreverse__range.html">reverse_range</a>(*i,*n);}};</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">using</span> LL = <span class="keywordtype">long</span> long;</div><div class="ttc" id="classreverse__range_html"><div class="ttname"><a href="../../d1/d4f/classreverse__range.html">reverse_range</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/dfe/_template_8cpp_source.html#l00022">Template.cpp:22</a></div></div>
+<div class="ttc" id="classrange_html"><div class="ttname"><a href="../../d2/d1f/classrange.html">range</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/dfe/_template_8cpp_source.html#l00023">Template.cpp:23</a></div></div>
+<div class="ttc" id="structcww_html"><div class="ttname"><a href="../../d8/d22/structcww.html">cww</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/dfe/_template_8cpp_source.html#l00014">Template.cpp:14</a></div></div>
+<div class="ttc" id="_mod_int_8cpp_html_a64ac736be44d2c598b9f4b6a68a7e223"><div class="ttname"><a href="../../de/dbc/_mod_int_8cpp.html#a64ac736be44d2c598b9f4b6a68a7e223">operator *</a></div><div class="ttdeci">ModInt operator *(const ModInt l, const ModInt r)</div><div class="ttdef"><b>Definition:</b> <a href="../../de/dbc/_mod_int_8cpp_source.html#l00170">ModInt.cpp:170</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築: &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
+</body>
+</html>
