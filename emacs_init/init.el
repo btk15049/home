@@ -1,22 +1,3 @@
-
-;;文字色とかテーマの設定っぽい
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (tango-dark))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Verdana" :foundry "outline" :slant normal :weight normal :height 132 :width normal))))
- '(hi-yellow ((t (:background "gray20" :foreground "snow"))))
- '(highlight ((t (:background "SteelBlue4" :foreground "snow")))))
-
 (set-frame-font "Monospace" 13)
 
 ;;行番号を表示する設定とその幅の調整
@@ -51,22 +32,6 @@
 
 ;;多分音が鳴らなくなる設定
 (setq ring-bell-function 'ignore)
-
-(setq initial-frame-alist
-      (append
-       '((top . 10)
-         (left . 520)
-	 (width .40)
-	 (height . 32);; (- (/ (x-display-pixel-height) (frame-char-height)) 100 ))
-         ) initial-frame-alist))
-
-;;多分背景の設定
-(if window-system (progn
-		    (set-background-color "Black")
-		    (set-foreground-color "LightGray")
-		    (set-cursor-color "Gray")
-		    (set-frame-parameter nil 'alpha 90) ;透明度
-		    ))
 
 
 ;;ifの中の=を警告

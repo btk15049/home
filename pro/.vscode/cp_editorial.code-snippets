@@ -1,0 +1,68 @@
+{
+	"CF editorial": {
+		"prefix": "edit-cf",
+		"body": [
+			"# Codeforces Round ??? (div?)",
+			"## A",
+			"感想",
+			"",
+			"## B",
+			"感想",
+			"",
+			"## C",
+			"感想",
+			"",
+			"### 新しく学んだこと",
+			"* 学べ",
+			"",
+		],
+		"description": "CF editorial"
+	},
+	"ABC editorial": {
+		"prefix": "edit-abc",
+		"body": [
+			"# AtCoder Beginner Contest ???",
+			"writer:",
+			"## A",
+			"感想",
+			"",
+			"## B",
+			"感想",
+			"",
+			"## C",
+			"感想",
+			"",
+			"## D",
+			"感想",
+			"",
+			"### 新しく学んだこと",
+			"* 学べ",
+			"",
+		],
+		"description": "ABC editorial"
+	},
+	"ARC editorial": {
+		"prefix": "edit-arc",
+		"body": [
+			"# AtCoder Regular Contest ???",
+			"writer:",
+			"## C(A)",
+			"感想",
+			"",
+			"## D(B)",
+			"感想",
+			"",
+			"## E(C)",
+			"感想",
+			"",
+			"## F(D)",
+			"感想",
+			"",
+			"### 新しく学んだこと",
+			"* 学べ",
+			"",
+		],
+		"description": "ARC editorial"
+	}
+
+}
