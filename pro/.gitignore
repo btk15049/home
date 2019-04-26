@@ -1,0 +1,10 @@
+*.in
+*.out
+a.out*
+*.txt
+debug.cpp
+chrome_extensions/*
+.vscode/c_cpp*
+.vscode/ipch*
+.vscode/settings.json
+.DS_store

@@ -18,6 +18,7 @@
             "template <typename T>inline bool chmin(T &l, T r){bool a = l>r; if (a)l = r; return a;}",
             "template <typename T>inline bool chmax(T &l, T r){bool a = l<r; if (a)l = r; return a;}",
             "template <typename T>istream& operator>>(istream &is, vector<T> &v){for (auto &it : v)is >> it;return is;}",
+            "template<typename T>inline T& unused_var(T& v){return v;}",
             "class reverse_range {private:struct I {int x;int operator*() {return x-1;}bool operator!=(I& lhs) {return x>lhs.x;}void operator++() {--x;}};I i, n;public:reverse_range(int n) :i({ 0 }), n({ n }){}reverse_range(int i, int n) :i({ i }), n({ n }){}I& begin() {return n;}I& end() {return i;}};",
             "class range {private: struct I { int x; int operator*() { return x; }bool operator!=(I& lhs) { return x<lhs.x; }void operator++() { ++x; } }; I i, n;public:range(int n) :i({ 0 }), n({ n }) {}range(int i, int n) :i({ i }), n({ n }) {}I& begin() { return i; }I& end() { return n; }reverse_range operator!(){return reverse_range(*i,*n);}};",
             "using LL = long long;",

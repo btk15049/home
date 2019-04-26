@@ -2,7 +2,7 @@
   "template": {
     "prefix": "btk_rolling_hash",
     "body": [
-      "$1namespace RollingHash{",
+      "$1namespace _RollingHash_{",
       "    /**",
       "    * @file RollingHash.cpp",
       "    * @brief ローリングハッシュ",
@@ -89,7 +89,7 @@
       "        };",
       "    };",
       "}",
-      "using namespace RollingHash;"
+      "using namespace _RollingHash_;"
     ]
   }
 }
