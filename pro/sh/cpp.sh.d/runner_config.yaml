@@ -11,8 +11,8 @@ Optimize : true
 
 #Run Options
 Run :
-  run : true     #ここをfalseにすると何も実行しない
-  samples : true #ここをfalseにすると，サンプル自動実行ではなくなる
+  run : true
+  samples : true
 
 #Etc
-CopyToClipBoard : true #要pbcopy 実行後clipboardに保存
+CopyToClipBoard : true
