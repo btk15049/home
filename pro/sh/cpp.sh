@@ -103,7 +103,6 @@ if [ `get_yaml_element ${YML} CopyToClipBoard` = "true" ]; then
     echo ""
     echo "copy:"
     python3 sh/cpp.sh.d/replace_ja.py ${1} | pbcopy
-    pbpaste
     echo "...done"
 fi
 
