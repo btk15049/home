@@ -8,3 +8,4 @@ chrome_extensions/*
 .vscode/ipch*
 .vscode/settings.json
 .DS_store
+.*.yaml

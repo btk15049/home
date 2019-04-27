@@ -1,0 +1,18 @@
+#Testcase Options
+SampleDownload :
+  dl    : true
+  force : false
+
+#Compile Options
+WithDebugMacro : true
+WarningOptions  : true
+CppVersion : c++17
+Optimize : true
+
+#Run Options
+Run :
+  run : true     #ここをfalseにすると何も実行しない
+  samples : true #ここをfalseにすると，サンプル自動実行ではなくなる
+
+#Etc
+CopyToClipBoard : true #要pbcopy 実行後clipboardに保存
