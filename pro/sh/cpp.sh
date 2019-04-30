@@ -19,7 +19,13 @@ DIR=${SUP}/${SUB}
 #設定yaml
 YML=${SUP}/.${SUB}.yaml
 #コードからURL取得
-URL=`head -n 1 $1 | cut -c3-`
+#先頭が//で始まらないならexit
+PR=`echo ${HEAD} | cut -c-2`
+URL=`echo ${HEAD} | cut -c3-`
+if [ "${PR}" != "//" ]; then
+    echo "ERROR: Header is invalid"
+    exit 1
+fi
 
 echo "${YML}"
 #yamlの存在チェック なければ作る
@@ -45,7 +51,7 @@ if [ `get_yaml_element ${YML} SampleDownload.dl` = "true" ]; then
         else
             echo "    redownload."
         fi
-        oj dl ${URL} -d ${DIR}
+        oj dl "${URL}" -d ${DIR}
     else
         echo "    ${DIR} is exist. downloading has skipped."
     fi
@@ -85,10 +91,10 @@ if [ `get_yaml_element ${YML} Run.run` = "true" ]; then
         "a.out is not found."
         exit 1
     fi
-
+    
     echo ""
     echo "run:"
-
+    
     #実行
     if [ `get_yaml_element ${YML} Run.samples` = "true" ]; then
         oj test -d ${DIR}
