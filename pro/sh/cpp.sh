@@ -19,10 +19,11 @@ DIR=${SUP}/${SUB}
 #設定yaml
 YML=${SUP}/.${SUB}.yaml
 #コードからURL取得
+HEAD=`head -n 1 < $1`
 #先頭が//で始まらないならexit
-PR=`echo ${HEAD} | cut -c-2`
-URL=`echo ${HEAD} | cut -c3-`
-if [ "${PR}" != "//" ]; then
+PR=`echo ${HEAD} | cut -c-3`
+URL=`echo ${HEAD} | cut -c4-`
+if [ "${PR}" != "// " ]; then
     echo "ERROR: Header is invalid"
     exit 1
 fi
@@ -57,6 +58,19 @@ if [ `get_yaml_element ${YML} SampleDownload.dl` = "true" ]; then
     fi
 fi
 
+
+echo ""
+echo "parse:"
+if [ `get_yaml_element ${YML} HeaderExpand` = "true" ]; then
+    python3 sh/resolve_includes.py ${1}
+    clang-format ${1} > tmp
+    cat tmp > ${1}
+    cat ${YML} | yq -y '.HeaderExpand = false' > tmp
+    mv tmp ${YML}
+else
+    echo "skipped."
+fi
+
 #コンパイルオプションをyamlから取得
 ARGS=""
 if [ `get_yaml_element ${YML} WarningOptions` = "true" ]; then
@@ -70,15 +84,11 @@ if [ ${cppver} != "null" ]; then
     ARGS="${ARGS} -std=${cppver}"
 fi
 
-if [ `get_yaml_element ${YML} Optimize` = "true" ]; then
-    ARGS="${ARGS} -O3"
-fi
-
-
 #コンパイル
 if [ -f a.out ]; then
     rm a.out
 fi
+
 echo ""
 echo "build:"
 echo "g++ ${1} ${ARGS}"
@@ -95,7 +105,7 @@ if [ `get_yaml_element ${YML} Run.run` = "true" ]; then
     echo ""
     echo "run:"
     
-    #実行
+    #run
     if [ `get_yaml_element ${YML} Run.samples` = "true" ]; then
         oj test -d ${DIR}
     else

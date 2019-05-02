@@ -1,18 +1,19 @@
 #Testcase Options
-SampleDownload :
-  dl    : true
-  force : false
+SampleDownload:
+  dl: true
+  force: false
 
 #Compile Options
-WithDebugMacro : true
-WarningOptions  : true
-CppVersion : c++17
-Optimize : true
+WithDebugMacro: true
+WarningOptions: true
+CppVersion: c++17
+Optimize: true
 
 #Run Options
-Run :
-  run : true
-  samples : true
+Run:
+  run: true
+  samples: true
 
 #Etc
-CopyToClipBoard : true
+CopyToClipBoard: true
+HeaderExpand: true
