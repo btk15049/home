@@ -24,12 +24,19 @@ def end_header(contents, word):
     return contents.index(word)+1
 
 
+def get_library(include_line):
+    inner = include_line[len('#include "'):-1]
+    if inner[0:len('lib/')] != 'lib/':
+        inner = 'lib' + inner
+    return inner
+
+
 def get_includes(path):
     contents = get_contents(path)
     raw_lines = contents[begin_header(
         contents, bh)+1:end_header(contents, eh)-1]
-    includes = ['lib/'+s[len('#include "'):-1]
-                for s in raw_lines if s[:len('#include "')] == '#include "']
+    includes = [get_library(s) for s in raw_lines if s[:len(
+        '#include "')] == '#include "']
     print(path+':', file=sys.stderr)
     for s in includes:
         print(' - '+s, file=sys.stderr)
@@ -51,7 +58,7 @@ def dfs(v):
 
 def get_inner_code(path):
     contents = get_contents(path)
-    return contents[:begin_header(contents, bh)] + contents[end_header(contents, eh):]
+    return contents[: begin_header(contents, bh)] + contents[end_header(contents, eh):]
 
 
 if __name__ == "__main__":
@@ -88,7 +95,7 @@ if __name__ == "__main__":
         main_contents[i] = '// ' + main_contents[i]
 
     main_contents[begin_header(main_contents, bb) +
-                  1:end_header(main_contents, eb)-1] = body
+                  1: end_header(main_contents, eb)-1] = body
 
     with open(code_path, 'w') as f:
         f.write('\n'.join(main_contents))

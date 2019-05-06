@@ -12,7 +12,7 @@ get_yaml_element() {
 #パス取得
 SUP=`dirname ${1}`
 #hoge.cpp -> hoge
-NAME=`basename ${1} .cpp`
+SUB=`basename ${1} .cpp`
 
 #サンプル格納用ディレクトリ
 DIR=${SUP}/${SUB}
@@ -121,5 +121,3 @@ if [ `get_yaml_element ${YML} CopyToClipBoard` = "true" ]; then
     python3 sh/runner.sh.d/replace_ja.py ${1} | pbcopy
     echo "...done"
 fi
-
-
