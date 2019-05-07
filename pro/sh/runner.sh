@@ -9,6 +9,12 @@ get_yaml_element() {
     cat ${1} | yq -y .${2} | head -1
 }
 
+#コンパイラ
+GPP="g++"
+if [ -e sh/.builder.yaml ]; then
+    GPP=`get_yaml_element sh/.builder.yaml gpp`
+fi
+
 #パス取得
 SUP=`dirname ${1}`
 #hoge.cpp -> hoge
@@ -28,7 +34,6 @@ if [ "${PR}" != "// " ]; then
     exit 1
 fi
 
-echo "${YML}"
 #yamlの存在チェック なければ作る
 if [ ! -f ${YML} ]; then
     echo "create ${YML}"
@@ -80,6 +85,7 @@ if [ `get_yaml_element ${YML} WithDebugMacro` = "true" ]; then
     ARGS="${ARGS} -DBTK"
 fi
 cppver=`get_yaml_element ${YML} CppVersion`
+
 if [ ${cppver} != "null" ]; then
     ARGS="${ARGS} -std=${cppver}"
 fi
@@ -91,8 +97,8 @@ fi
 
 echo ""
 echo "build:"
-echo "g++ ${1} ${ARGS}"
-g++ ${1} ${ARGS}
+echo "${GPP} ${1} ${ARGS}"
+${GPP} ${1} ${ARGS}
 
 #実行
 if [ `get_yaml_element ${YML} Run.run` = "true" ]; then
@@ -121,3 +127,5 @@ if [ `get_yaml_element ${YML} CopyToClipBoard` = "true" ]; then
     python3 sh/runner.sh.d/replace_ja.py ${1} | pbcopy
     echo "...done"
 fi
+
+
