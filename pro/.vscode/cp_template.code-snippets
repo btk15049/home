@@ -4,7 +4,7 @@
     "body": [
       "// $1",
       "/*<head>*/",
-      "#include \"Template.cpp\"",
+      "#include \"lib/Template.cpp\"",
       "/*</head>*/",
       "",
       "/*<body>*/",

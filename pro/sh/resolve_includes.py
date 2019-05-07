@@ -27,7 +27,7 @@ def end_header(contents, word):
 def get_library(include_line):
     inner = include_line[len('#include "'):-1]
     if inner[0:len('lib/')] != 'lib/':
-        inner = 'lib' + inner
+        inner = 'lib/' + inner
     return inner
 
 

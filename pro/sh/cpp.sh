@@ -12,7 +12,7 @@ get_yaml_element() {
 #パス取得
 SUP=`dirname ${1}`
 #hoge.cpp -> hoge
-NAME=`basename ${1} .cpp`
+SUB=`basename ${1} .cpp`
 
 #サンプル格納用ディレクトリ
 DIR=${SUP}/${SUB}
@@ -63,8 +63,8 @@ echo ""
 echo "parse:"
 if [ `get_yaml_element ${YML} HeaderExpand` = "true" ]; then
     python3 sh/resolve_includes.py ${1}
-    clang-format ${1} > tmp
-    cat tmp > ${1}
+    #clang-format ${1} > tmp
+    #cat tmp > ${1}
     cat ${YML} | yq -y '.HeaderExpand = false' > tmp
     mv tmp ${YML}
 else
@@ -80,6 +80,7 @@ if [ `get_yaml_element ${YML} WithDebugMacro` = "true" ]; then
     ARGS="${ARGS} -DBTK"
 fi
 cppver=`get_yaml_element ${YML} CppVersion`
+
 if [ ${cppver} != "null" ]; then
     ARGS="${ARGS} -std=${cppver}"
 fi
@@ -91,8 +92,8 @@ fi
 
 echo ""
 echo "build:"
-echo "g++ ${1} ${ARGS}"
-g++ ${1} ${ARGS}
+echo "g++-8 ${1} ${ARGS}"
+g++-8 ${1} ${ARGS}
 
 #実行
 if [ `get_yaml_element ${YML} Run.run` = "true" ]; then
