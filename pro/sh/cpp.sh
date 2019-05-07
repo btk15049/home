@@ -92,8 +92,8 @@ fi
 
 echo ""
 echo "build:"
-echo "g++-8 ${1} ${ARGS}"
-g++-8 ${1} ${ARGS}
+echo "g++ ${1} ${ARGS}"
+g++ ${1} ${ARGS}
 
 #実行
 if [ `get_yaml_element ${YML} Run.run` = "true" ]; then
