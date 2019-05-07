@@ -1,0 +1,19 @@
+{
+  "template": {
+    "prefix": "btk_init",
+    "body": [
+      "// $1",
+      "/*<head>*/",
+      "#include \"Template.cpp\"",
+      "/*</head>*/",
+      "",
+      "/*<body>*/",
+      "/*</body>*/",
+      "",
+      "int main() {",
+      "",
+      "\treturn 0;",
+      "}"
+    ]
+  }
+}
