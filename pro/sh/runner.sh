@@ -6,7 +6,7 @@ init_yaml() {
 
 #第一引数にyaml 第二引数にほしいパラメータ名
 get_yaml_element() {
-    cat ${1} | yq -y .${2} | head -1
+    cat ${1} | yq .${2}
 }
 
 #コンパイラ
