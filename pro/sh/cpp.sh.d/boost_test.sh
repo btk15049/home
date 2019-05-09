@@ -4,10 +4,12 @@ get_yaml_element() {
     cat ${1} | yq .${2} | sed 's/"//g'
 }
 
+SH_DIR=$(cd $(dirname $0); pwd)
+
 #コンパイラ
 GPP="g++"
-if [ -e sh/.builder.yaml ]; then
-    GPP=`get_yaml_element sh/.builder.yaml gpp`
+if [ -e ${SH_DIR}/.builder.yaml ]; then
+    GPP=`get_yaml_element ${SH_DIR}/.builder.yaml gpp`
 fi
 
 #コンパイル
@@ -15,7 +17,11 @@ if [ -f a.out ]; then
     rm a.out
 fi
 
-ARGS="-Wall -Wextra -std=c++17 -DBTK -I /usr/local/Cellar/boost/1.69.0_2/include"
+ARGS="-Wall -Wextra -std=c++17"
+if [ -e ${SH_DIR}/boost_test.sh.d/.build_args.yaml ]; then
+    ARGS=`get_yaml_element ${SH_DIR}/boost_test.sh.d/.build_args.yaml args`
+fi
+
 
 echo ""
 echo "build:"

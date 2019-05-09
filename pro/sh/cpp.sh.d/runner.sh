@@ -1,7 +1,7 @@
 #!/bin/bash
 #template更新
 init_yaml() {
-    cp sh/runner.sh.d/runner_config.yaml ${1}
+    cp ${SH_DIR}/runner.sh.d/runner_config.yaml ${1}
 }
 
 #第一引数にyaml 第二引数にほしいパラメータ名
@@ -9,10 +9,12 @@ get_yaml_element() {
     cat ${1} | yq .${2} | sed 's/"//g'
 }
 
+SH_DIR=$(cd $(dirname $0); pwd)
+
 #コンパイラ
 GPP="g++"
-if [ -e sh/.builder.yaml ]; then
-    GPP=`get_yaml_element sh/.builder.yaml gpp`
+if [ -e ${SH_DIR}/.builder.yaml ]; then
+    GPP=`get_yaml_element ${SH_DIR}/.builder.yaml gpp`
 fi
 
 #パス取得
@@ -67,7 +69,7 @@ fi
 echo ""
 echo "parse:"
 if [ `get_yaml_element ${YML} HeaderExpand` = "true" ]; then
-    python3 sh/resolve_includes.py ${1}
+    python3 ${SH_DIR}/resolve_includes.py ${1}
     clang-format ${1} > tmp
     cat tmp > ${1}
     cat ${YML} | yq -y '.HeaderExpand = false' > tmp
@@ -124,7 +126,7 @@ fi
 if [ `get_yaml_element ${YML} CopyToClipBoard` = "true" ]; then
     echo ""
     echo "copy:"
-    python3 sh/runner.sh.d/replace_ja.py ${1} | pbcopy
+    python3 ${SH_DIR}/runner.sh.d/replace_ja.py ${1} | pbcopy
     echo "...done"
 fi
 
