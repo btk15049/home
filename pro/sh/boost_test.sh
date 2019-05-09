@@ -1,7 +1,7 @@
 #!/bin/bash
 #第一引数にyaml 第二引数にほしいパラメータ名
 get_yaml_element() {
-    cat ${1} | yq .${2} | head
+    cat ${1} | yq .${2} | sed 's/"//g'
 }
 
 #コンパイラ
@@ -15,7 +15,7 @@ if [ -f a.out ]; then
     rm a.out
 fi
 
-ARGS="-Wall -Wextra -std=c++17 -DBTK"
+ARGS="-Wall -Wextra -std=c++17 -DBTK -I /usr/local/Cellar/boost/1.69.0_2/include"
 
 echo ""
 echo "build:"
