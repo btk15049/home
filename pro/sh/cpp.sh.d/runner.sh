@@ -69,7 +69,7 @@ fi
 echo ""
 echo "parse:"
 if [ `get_yaml_element ${YML} HeaderExpand` = "true" ]; then
-    python3 ${SH_DIR}/resolve_includes.py ${1}
+    python3 ${SH_DIR}/runner.sh.d/resolve_includes.py ${1}
     clang-format ${1} > tmp
     cat tmp > ${1}
     cat ${YML} | yq -y '.HeaderExpand = false' > tmp
