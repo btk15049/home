@@ -11,13 +11,18 @@ GPP="g++"
 if [ -e ${SH_DIR}/.builder.yaml ]; then
     GPP=`get_yaml_element ${SH_DIR}/.builder.yaml gpp`
 fi
+LIB="~/lib"
+if [ -e ${SH_DIR}/.builder.yaml ]; then
+    LIB=`get_yaml_element ${SH_DIR}/.builder.yaml header`
+fi
+
 
 #コンパイル
 if [ -f a.out ]; then
     rm a.out
 fi
 
-ARGS="-Wall -Wextra -std=c++17"
+ARGS="-I ${LIB} -Wall -Wextra -std=c++17"
 if [ -e ${SH_DIR}/boost_test.sh.d/.build_args.yaml ]; then
     ARGS=`get_yaml_element ${SH_DIR}/boost_test.sh.d/.build_args.yaml args`
 fi

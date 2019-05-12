@@ -1,6 +1,7 @@
 import sys
 from queue import LifoQueue
 
+lib_path = ''
 bh = '/*<head>*/'
 eh = '/*</head>*/'
 bb = '/*<body>*/'
@@ -26,8 +27,7 @@ def end_header(contents, word):
 
 def get_library(include_line):
     inner = include_line[len('#include "'):-1]
-    if inner[0:len('lib/')] != 'lib/':
-        inner = 'lib/' + inner
+    inner = lib_path + '/' + inner
     return inner
 
 
@@ -63,6 +63,7 @@ def get_inner_code(path):
 
 if __name__ == "__main__":
     code_path = sys.argv[1]
+    lib_path = sys.argv[2]
     que = LifoQueue()
     que.put(code_path)
 

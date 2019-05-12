@@ -1,4 +1,8 @@
 #!/bin/bash
+
+SH_DIR=$(cd $(dirname $0); pwd)
+
+
 #template更新
 init_yaml() {
     cp ${SH_DIR}/runner.sh.d/runner_config.yaml ${1}
@@ -9,13 +13,17 @@ get_yaml_element() {
     cat ${1} | yq .${2} | sed 's/"//g'
 }
 
-SH_DIR=$(cd $(dirname $0); pwd)
-
 #コンパイラ
 GPP="g++"
 if [ -e ${SH_DIR}/.builder.yaml ]; then
     GPP=`get_yaml_element ${SH_DIR}/.builder.yaml gpp`
 fi
+
+LIB="~/lib"
+if [ -e ${SH_DIR}/.builder.yaml ]; then
+    LIB=`get_yaml_element ${SH_DIR}/.builder.yaml header`
+fi
+
 
 #パス取得
 SUP=`dirname ${1}`
@@ -69,7 +77,7 @@ fi
 echo ""
 echo "parse:"
 if [ `get_yaml_element ${YML} HeaderExpand` = "true" ]; then
-    python3 ${SH_DIR}/runner.sh.d/resolve_includes.py ${1}
+    python3 ${SH_DIR}/runner.sh.d/resolve_includes.py ${1} ${LIB}
     clang-format ${1} > tmp
     cat tmp > ${1}
     cat ${YML} | yq -y '.HeaderExpand = false' > tmp
@@ -79,7 +87,7 @@ else
 fi
 
 #コンパイルオプションをyamlから取得
-ARGS=""
+ARGS="-I ${LIB}"
 if [ `get_yaml_element ${YML} WarningOptions` = "true" ]; then
     ARGS="${ARGS} -Wall -Wextra"
 fi
