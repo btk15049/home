@@ -48,5 +48,5 @@ def wait_input(sec):
 
 
 if __name__ == "__main__":
-    key = wait_input(10)
+    key = wait_input(5)
     print(key)

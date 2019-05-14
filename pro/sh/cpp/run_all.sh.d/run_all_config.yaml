@@ -6,14 +6,11 @@ SampleDownload:
 #Compile Options
 WithDebugMacro: true
 WarningOptions: true
-CppVersion: c++17
 Optimize: true
 
-#Run Options
-Run:
-  run: true
-  samples: true
+#Sample Run Options
+Run: true
 
 #Etc
 CopyToClipBoard: true
-HeaderExpand: true
+AutoSubmit: true
