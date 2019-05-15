@@ -21,6 +21,6 @@ if [ -f a.out ]; then
     rm a.out
 fi
 
-echo "${GPP} ${1} -I ${LIB} ${ARGS} -srd=c++17"
+echo "${GPP} ${1} -I ${LIB} ${ARGS} -std=c++17"
 ${GPP} ${1} -I ${LIB} ${ARGS} -std=c++17
 
