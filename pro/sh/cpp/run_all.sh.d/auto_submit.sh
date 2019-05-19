@@ -6,7 +6,7 @@ echo "Please type key [y/n]"
 KEY=`python3 ${SH_DIR}/input_with_timeout.py`
 if [ ${KEY} = "y" ]; then
     echo "submition to ${URL}"
-    oj submit -y ${URL} ${1}
+    oj submit -y ${URL} ${2}
     echo "...done"
 else
     echo "no submission"

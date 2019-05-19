@@ -107,7 +107,7 @@ fi
 if [ `get_yaml_element ${YML} AutoSubmit` = "true" ]; then
     echo ""
     echo "<submit>"
-    ${SH_DIR}/run_all.sh.d/auto_submit.sh ${1} ${URL}
+    ${SH_DIR}/run_all.sh.d/auto_submit.sh ${URL} ${1}
 fi
 
 
