@@ -178,6 +178,21 @@ namespace _Graph_ {
          */
         inline int versus(const int v) const { return a ^ b ^ v; }
     };
+
+    template <typename COST_TYPE>
+    struct WeightedEdge {
+        int id, a, b;
+        COST_TYPE cost;
+
+        WeightedEdge(int id = 0, int a = 0, int b = 0, int cost = 0)
+            : id(id), a(a), b(b), cost(cost) {}
+        /**
+         * @brief 辺における，vの対になってる頂点番号を取得する
+         * @param v 頂点番号
+         * @return int vじゃない方の頂点番号
+         */
+        inline int versus(const int v) const { return a ^ b ^ v; }
+    };
     /**
      * @brief グラフクラス
      * @tparam E=Edge 新たなグラフクラス作るときは書き換える
@@ -222,6 +237,13 @@ namespace _Graph_ {
         inline int degree() { return edges.size(); }
 
         /**
+         * @brief
+         * グラフの頂点数を変更する
+         * @return int
+         */
+        inline void resize(const int n) { g.resize(n); }
+
+        /**
          * @brief "無向"辺(a,b)を追加する．
          * @param a 頂点番号
          * @param b 頂点番号
@@ -240,6 +262,26 @@ namespace _Graph_ {
         }
 
         /**
+         * @brief "無向"辺Eを追加する．
+         * @details paramsはemplace_backと同じノリで続けて足してけばOK
+         */
+
+
+        /**
+         * @brief 辺を追加 idは自動付与
+         * @param e
+         */
+        inline void add_edge(E e) {
+            e.id = edges.size();
+            if ((int)g.size() <= max(e.a, e.b)) {
+                g.resize(max(e.a, e.b) + 1);
+            }
+            g[e.a].emplace_back(e.id);
+            g[e.b].emplace_back(e.id);
+            edges.emplace_back(e);
+        }
+
+        /**
          * @brief "有向"辺(a,b)を追加する．
          * @param a 頂点番号
          * @param b 頂点番号
@@ -254,6 +296,19 @@ namespace _Graph_ {
             }
             g[a].emplace_back(id);
             edges.emplace_back(id, a, b, forward<Ts>(params)...);
+        }
+
+        /**
+         * @brief 辺を追加 idは自動付与
+         * @param e
+         */
+        inline void add_arc(E e) {
+            e.id = edges.size();
+            if ((int)g.size() <= max(e.a, e.b)) {
+                g.resize(max(e.a, e.b) + 1);
+            }
+            g[e.a].emplace_back(e.id);
+            edges.emplace_back(e);
         }
 
         /**
@@ -316,14 +371,15 @@ namespace _Tree_ {
          * @brief
          * DFSで木を作る
          */
-        void build_tree(Graph<E>& g, int v, vector<bool>& used) {
+        void build_tree(Graph<E>& g, const int v, vector<bool>& used) {
             used[v] = true;
             for (int edge_id : g[v]) {
                 auto e      = g.i2e(edge_id);
                 const int u = e.versus(v);
                 if (used[u]) continue;
-                // add_arc(e);
-                this->add_arc(v, u);
+                e.a = v;
+                e.b = u;
+                this->add_arc(e);
                 build_tree(g, u, used);
             }
         }
@@ -336,6 +392,7 @@ namespace _Tree_ {
          */
         Forest(Graph<E>& g, const int loop_begin_vtx = 0)
             : Graph<E>(g.size(), g.size() - 1) {
+            this->resize(g.size());
             vector<bool> used(g.size());
             for (int v : range(loop_begin_vtx, g.size() + loop_begin_vtx)) {
                 v = v % g.size();
@@ -370,30 +427,30 @@ using namespace _Tree_;
 /* #endregion */
 /*</body>*/
 
-
-LL w[212345];
 int ret[212345];
-void dfs(int v, int p, LL d, Graph<>& g) {
+void dfs(int v, int p, LL d, Tree<WeightedEdge<LL>>& g) {
     ret[v] = (int)(d % 2);
     for (int ei : g[v]) {
         auto e      = g.i2e(ei);
         const int u = e.versus(v);
         if (u == p) continue;
-        dfs(u, v, d + w[ei], g);
+        dfs(u, v, d + e.cost, g);
     }
 }
 int main() {
     int N;
     cin >> N;
-    Graph<> g(N, N - 1);
+    Graph<WeightedEdge<LL>> g(N, N - 1);
     for (int i : range(N - 1)) {
         int a, b;
-        cin >> a >> b >> w[i];
+        LL c;
+        cin >> a >> b >> c;
         a--;
         b--;
-        g.add_edge(a, b);
+        g.add_edge(a, b, c);
     }
-    dfs(0, 0, 0, g);
+    Tree<WeightedEdge<LL>> t(g);
+    dfs(0, 0, 0, t);
     for (int i : range(N)) cout << ret[i] << endl;
     return 0;
 }
