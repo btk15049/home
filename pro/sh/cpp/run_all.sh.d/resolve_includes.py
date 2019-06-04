@@ -67,6 +67,9 @@ if __name__ == "__main__":
     que = LifoQueue()
     que.put(code_path)
 
+    if len(get_includes(code_path))==0:
+        exit(0)
+
     # build include graph
     while que.empty() == False:
         path = que.get()
@@ -86,8 +89,9 @@ if __name__ == "__main__":
     for path in resolved_includes:
         print('<'+str(i)+'>'+path, file=sys.stderr)
         i = i+1
+        body.append('/* #region ' + str(i) +'*/')
         body.extend(get_inner_code(path))
-        body.append('')
+        body.append('/* #endregion */')
     body.append('/* #endregion */')
 
     main_contents = get_contents(code_path)
