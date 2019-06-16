@@ -9,3 +9,4 @@ chrome_extensions/*
 .vscode/settings.json
 .DS_store
 .*.yaml
+tempCodeRunnerFile.cpp
