@@ -1,5 +1,6 @@
 // https://atcoder.jp/contests/abc129/tasks/abc129_f
 /*<head>*/
+// #include "Matrix.hpp"
 // #include "ModInt.hpp"
 /*</head>*/
 
@@ -145,6 +146,104 @@ namespace _Template_ {
 using namespace _Template_;
 /* #endregion */
 /* #region 2*/
+/**
+ * @file Matrix.hpp
+ * @author btk
+ * @brief
+ * @version 0.1
+ * @date 2019-06-10
+ *
+ * @copyright Copyright (c) 2019
+ *
+ */
+
+
+namespace _MATRIX_ {
+    template <typename T, size_t row_size, size_t col_size>
+    class Matrix {
+      public:
+        static constexpr int fixed_col_size = ((col_size + 3) / 4) * 4;
+        static constexpr int fixed_row_size = ((row_size + 3) / 4) * 4;
+        using col_array                     = array<T, fixed_col_size>;
+        using row_array                     = array<T, fixed_row_size>;
+        using matrix                        = array<col_array, row_size>;
+
+      private:
+        matrix value;
+
+      public:
+        inline col_array& operator[](const int idx) { return value[idx]; }
+    };
+
+    template <typename T, size_t r1, size_t c1, size_t c2>
+    void mul(Matrix<T, r1, c1>& in1, Matrix<T, c1, c2>& in2,
+             Matrix<T, r1, c2>& out) {
+        for (int i : range(r1)) {
+            for (int j : range(c2)) {
+                out[i][j] = 0;
+            }
+        }
+        T sum[4], tmp;
+        for (int k : range(c1)) {
+            for (size_t i = 0; i < r1; i += 4) {
+                sum[0] = in1[i][k];
+                sum[1] = in1[i + 1][k];
+                sum[2] = in1[i + 2][k];
+                sum[3] = in1[i + 3][k];
+                for (int j : range(c2)) {
+                    tmp = in2[k][j];
+                    out[i + 0][j] += sum[0] * tmp;
+                    out[i + 1][j] += sum[1] * tmp;
+                    out[i + 2][j] += sum[2] * tmp;
+                    out[i + 3][j] += sum[3] * tmp;
+                }
+            }
+        }
+    }
+
+    template <typename T, size_t r, size_t c>
+    inline void mul(Matrix<T, r, c> m, array<T, c> in, array<T, r>& out) {
+        for (int i : range(r)) {
+            out[i] = 0;
+            for (int j : range(c)) {
+                out[i] += m[i][j] * in[j];
+            }
+        }
+    }
+
+    template <typename T, size_t r, int size = 64>
+    class Chain {
+        using matrix = Matrix<T, r, r>;
+        using vec    = array<T, r>;
+
+      private:
+        matrix bin[size];
+
+      public:
+        Chain(matrix m) {
+            bin[0] = m;
+            for (int i : range(1, size)) {
+                mul(bin[i - 1], bin[i - 1], bin[i]);
+            }
+        }
+        vec compute(vec v, unsigned long long n) {
+            for (int i = 0; n > 0; i++, n >>= 1) {
+                if (n & 1) {
+                    vec nv;
+                    mul(bin[i], v, nv);
+                    swap(v, nv);
+                }
+            }
+            return v;
+        }
+    };
+
+} // namespace _MATRIX_
+
+
+using namespace _MATRIX_;
+/* #endregion */
+/* #region 3*/
 
 /**
  * @file ModInt.hpp
@@ -197,6 +296,12 @@ namespace _ModInt_ {
         ModInt(const long long y) { x = (int)((mod + y % mod) % mod); }
 
         /**
+         * @brief ModIntからの代入演算子
+         * @param[in] o 設定したい値
+         * @details 高速
+         */
+        ModInt(const ModInt& o) { this->x = *o; }
+        /**
          * @brief 整数から高速にModIntを作りたいときに使う
          * @param[in] x 設定したい値
          * @details xが[0,mod)であることが保証されてないと正しく動かない．
@@ -231,6 +336,16 @@ namespace _ModInt_ {
          */
         ModInt& operator=(const long long o) {
             this->x = (int)((mod + o % mod) % mod);
+            return *this;
+        }
+
+        /**
+         * @brief ModIntからの代入演算子
+         * @param[in] o 設定したい値
+         * @details 高速
+         */
+        ModInt& operator=(const ModInt o) {
+            this->x = *o;
             return *this;
         }
     };
@@ -401,6 +516,48 @@ namespace _ModInt_ {
     }
 
     /**
+     * @brief
+     * +=の実装、各operator+を呼ぶだけ
+     * @tparam T
+     * @param l ModInt
+     * @param r 足すやつ
+     * @return ModInt&
+     */
+    template <typename T>
+    ModInt& operator+=(ModInt& l, T r) {
+        l = l + r;
+        return l;
+    }
+
+    /**
+     * @brief
+     * -=の実装、各operator-を呼ぶだけ
+     * @tparam T
+     * @param l ModInt
+     * @param r 引くやつ
+     * @return ModInt&
+     */
+    template <typename T>
+    ModInt& operator-=(ModInt& l, T r) {
+        l = l - r;
+        return l;
+    }
+
+    /**
+     * @brief
+     * *=の実装、各operator*を呼ぶだけ
+     * @tparam T
+     * @param l ModInt
+     * @param r かけるやつ
+     * @return ModInt&
+     */
+    template <typename T>
+    ModInt& operator*=(ModInt& l, T r) {
+        l = l * r;
+        return l;
+    }
+
+    /**
      * @namespace factorial
      * @brief 順列数関連の関数のまとめ
      * @details
@@ -468,54 +625,18 @@ using namespace _ModInt_;
 /* #endregion */
 /*</body>*/
 
-ModInt& operator+=(ModInt& l,ModInt r){
-    l=l+r;
-    return l;
-}
-#define FOR(i,bg,ed) for(int i=(bg);i<(ed);i++)
-#define REP(i,n) FOR(i,0,n)
 
-typedef ModInt D;
-#define REP4(i,n) for(int i=0;i<n;i+=4)
-
-constexpr int S = 4;
-struct M{
-    D v[S][S];
-    D& operator()(int i,int j){
-        return v[i][j];
-    }
-}mat[64];
-
-void mat_mul(M &a,M& b,M &c){
-    REP(i,S)REP(j,S)c(i,j)=0;
-    D sum[4],tmp;
-    REP(k,S){
-        REP4(i,S){
-            sum[0]=a(i,k);
-            sum[1]=a(i+1,k);
-            sum[2]=a(i+2,k);
-            sum[3]=a(i+3,k);
-            REP(j,S){
-                tmp=b(k,j);
-                c(i,j)+=sum[0]*tmp;
-                c(i+1,j)+=sum[1]*tmp;
-                c(i+2,j)+=sum[2]*tmp;
-                c(i+3,j)+=sum[3]*tmp;
-            }
-        }
-    }
-}
 __int128 L, A, B;
 __int128 ten[20];
-__int128 lb(__int128 b){
+__int128 lb(__int128 b) {
     __int128 ge = L;
     __int128 lt = -1;
-    while(ge-lt>1){
-        const auto md = (lt+ge)/2;
-        if(A+md*B>=b){
+    while (ge - lt > 1) {
+        const auto md = (lt + ge) / 2;
+        if (A + md * B >= b) {
             ge = md;
         }
-        else{
+        else {
             lt = md;
         }
     }
@@ -535,46 +656,28 @@ int main() {
         ten[i] = ten[i - 1] * 10;
     }
     ModInt ret = 0;
-    for(int len:range(1,19)){
-        __int128 bg=lb(ten[len-1]);
-        __int128 ed=lb(ten[len+0]);
-        ModInt AA((LL)(A+B*bg));
-        auto n = (ed-bg);
+    for (int len : range(1, 19)) {
+        __int128 bg = lb(ten[len - 1]);
+        __int128 ed = lb(ten[len + 0]);
+        ModInt AA((LL)(A + B * bg));
         /*
         S          ten  1   0   S
         Ai+B    =  0    1   1   Ai+B
         B          0    0   1   B
         */
-        mat[0](0,0) = (LL)ten[len];
-        mat[0](0,1) = 1;
-        mat[0](1,1) = 1;
-        mat[0](1,2) = 1;
-        mat[0](2,2) = 1;
-        for(int i:range(61)){
-            mat_mul(mat[i],mat[i],mat[i+1]);
-        }
-        array<ModInt,3> x;
-        x[0] = ret;
-        x[1] = AA;
-        x[2] = (LL)B;
-        int idx = 0;
-        //cerr << len << " " << (LL)n << " ";
-        while(n){
-            array<ModInt,3> y;
-            if(n&1){
-                for(int i:range(3)){
-                    for(int j:range(3)){
-                        y[i]=y[i]+mat[idx](i,j) * x[j];
-                    }
-                }
-                x=y;
-            }
-            idx++;
-            n>>=1;
-        }
-       ret=x[0];
-       //cerr << " " <<*ret << endl;
+        Chain<ModInt, 3> chain([&]() {
+            Matrix<ModInt, 3, 3> mat;
+            mat[0][0] = (LL)ten[len];
+            mat[0][1] = 1;
+            mat[1][1] = 1;
+            mat[1][2] = 1;
+            mat[2][2] = 1;
+            return mat;
+        }());
+        array<ModInt, 3> x = {ret, AA, ModInt((LL)B)};
+        ret                = chain.compute(x, ed - bg)[0];
+        // cerr << " " <<*ret << endl;
     }
-    cout<<*ret<<endl;
+    cout << *ret << endl;
     return 0;
 }

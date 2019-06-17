@@ -6,10 +6,7 @@ get_yaml_element() {
 
 SH_DIR=$(cd $(dirname $0); pwd)
 
-if [ -e ${SH_DIR}/boost_test.sh.d/.build_args.yaml ]; then
-    ARGS=`get_yaml_element ${SH_DIR}/boost_test.sh.d/.build_args.yaml args`
-fi
-ARGS="${ARGS} -Wall -Wextra"
+ARGS="${ARGS} -Wall -Wextra -DBTK"
 
 
 echo ""
