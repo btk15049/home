@@ -10,3 +10,5 @@ chrome_extensions/*
 .DS_store
 .*.yaml
 tempCodeRunnerFile.cpp
+**/in/*
+**/out/*
