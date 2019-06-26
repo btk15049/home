@@ -1,4 +1,4 @@
-// https://codeforces.com/contest/1174/problem/F
+// https://codeforces.cm/contest/1174/problem/F
 /*<head>*/
 // #include "HeavyLightDecomposition.hpp"
 /*</head>*/
@@ -151,7 +151,7 @@ using namespace _Template_;
  * @brief メモリ管理クラス
  * @author btk15049
  * @date 2019/03/11
- * @datails
+ * @details 
  */
 namespace _Buffer_ {
     /**
@@ -253,7 +253,7 @@ using namespace _Buffer_;
  * @brief グラフクラス
  * @author btk15049
  * @date 2019/03/11
- * @datails
+ * @details 
  *  verify: WUPC C
  */
 namespace _Graph_ {
@@ -459,7 +459,7 @@ using namespace _Graph_;
  * @brief 根付き森と根付き木
  * @author btk15049
  * @date 2019/05/07
- * @datails
+ * @details 
  *  verify:
  */
 

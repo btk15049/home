@@ -1,4 +1,4 @@
-// https://atcoder.jp/contests/abc126/tasks/abc126_e
+// https://atcoer.jp/contests/abc126/tasks/abc126_e
 /*<head>*/
 // #include "Template.hpp"
 // #include "Tree.hpp"
@@ -150,7 +150,7 @@ using namespace _Template_;
  * @brief グラフクラス
  * @author btk15049
  * @date 2019/03/11
- * @datails
+ * @details 
  *  verify: WUPC C
  */
 namespace _Graph_ {
@@ -347,7 +347,7 @@ using namespace _Graph_;
  * @brief 根付き森と根付き木
  * @author btk15049
  * @date 2019/05/07
- * @datails
+ * @details 
  *  verify:
  */
 

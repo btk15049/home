@@ -1,4 +1,4 @@
-// https://atcoder.jp/contests/abc129/tasks/abc129_f
+// http://atcoder.jp/contests/abc129/tasks/abc129_f
 /*<head>*/
 // #include "Matrix.hpp"
 // #include "ModInt.hpp"
@@ -250,7 +250,7 @@ using namespace _MATRIX_;
  * @brief mod構造体
  * @author btk15049
  * @date 2019/03/08
- * @datails
+ * @details 
  *  \todo verifyが足りない
  *  verify: CSA12E，RUPC day3 F
  */
