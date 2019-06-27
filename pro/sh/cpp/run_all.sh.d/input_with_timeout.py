@@ -48,5 +48,8 @@ def wait_input(sec):
 
 
 if __name__ == "__main__":
-    key = wait_input(5)
+    if len(sys.argv) != 2:
+        print("Usage: input_with_timeput.py <sec>")
+        exit(1)
+    key = wait_input(int(sys.argv[1]))
     print(key)

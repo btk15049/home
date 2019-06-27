@@ -1,8 +1,9 @@
 // https://atcoder.jp/contests/abc129/tasks/abc129_b
+#ifdef BTK
 /*<head>*/
-// #include "Template.hpp"
+#    include "Template.hpp"
 /*</head>*/
-
+#else
 /*<body>*/
 /* #region header */
 /* #region 1*/
@@ -12,26 +13,40 @@
  * @author btk15049
  * @date 2019/05/02
  */
-#include <bits/stdc++.h>
+#    include <bits/stdc++.h>
 using namespace std;
 
 /* #region macro */
-#ifdef BTK
-#    define DEBUG if (1)
-#    define CIN_ONLY if (0)
-#else
-#    define DEBUG if (0)
-#    define CIN_ONLY if (1)
-#endif
-/** @def
+/**
+ * @def DEBUG
+ * @brief デバッグ用のif文　提出時はif(0)で実行されない
+ */
+
+/**
+ * @def CIN_ONLY
+ * @brief デバッグ用のif文　提出時はif(0)で実行されない
+ */
+
+#    ifdef BTK
+#        define DEBUG if (1)
+#        define CIN_ONLY if (0)
+#    else
+#        define DEBUG if (0)
+#        define CIN_ONLY if (1)
+#    endif
+/**
+ * @def ALL(v)
+ * @brief
  * ALLマクロ
  */
-#define ALL(v) (v).begin(), (v).end()
+#    define ALL(v) (v).begin(), (v).end()
 
-/** @def
+/**
+ * @def REC(ret, ...)
+ * @brief
  * 再帰ラムダをするためのマクロ
  */
-#define REC(ret, ...) std::function<ret(__VA_ARGS__)>
+#    define REC(ret, ...) std::function<ret(__VA_ARGS__)>
 /* #endregion */
 
 namespace _Template_ {
@@ -47,6 +62,10 @@ namespace _Template_ {
             }
         }
     } star;
+    /**
+     * @var star
+     * @brief cin高速化を実体化
+     */
     /**
      * @brief change min
      * @tparam T 型
@@ -101,9 +120,30 @@ namespace _Template_ {
         I i, n;
 
       public:
+        /**
+         * @brief Construct a new reverse range object
+         *
+         * @param n
+         */
         reverse_range(int n) : i({0}), n({n}) {}
+        /**
+         * @brief Construct a new reverse range object
+         *
+         * @param i
+         * @param n
+         */
         reverse_range(int i, int n) : i({i}), n({n}) {}
+        /**
+         * @brief
+         * begin iterator
+         * @return I&
+         */
         I& begin() { return n; }
+        /**
+         * @brief
+         * end iterator
+         * @return I&
+         */
         I& end() { return i; }
     };
     /**
@@ -126,10 +166,36 @@ namespace _Template_ {
         I i, n;
 
       public:
+        /**
+         * @brief Construct a new range object
+         *
+         * @param n
+         */
         range(int n) : i({0}), n({n}) {}
+        /**
+         * @brief Construct a new range object
+         *
+         * @param i
+         * @param n
+         */
         range(int i, int n) : i({i}), n({n}) {}
+        /**
+         * @brief
+         * begin iterator
+         * @return I&
+         */
         I& begin() { return i; }
+        /**
+         * @brief
+         * end iterator
+         * @return I&
+         */
         I& end() { return n; }
+        /**
+         * @brief
+         * 逆向きに参照するrange(reverse_rangeを取得できるs)
+         * @return reverse_range
+         */
         reverse_range operator!() { return reverse_range(*i, *n); }
     };
     /**
@@ -140,12 +206,14 @@ namespace _Template_ {
     inline T& unused_var(T& v) {
         return v;
     }
+    //! LL
     using LL = long long;
 } // namespace _Template_
 using namespace _Template_;
 /* #endregion */
 /* #endregion */
 /*</body>*/
+#endif
 
 int N;
 int w[112];
