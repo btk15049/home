@@ -86,9 +86,6 @@ if __name__ == "__main__":
     que = LifoQueue()
     que.put(code_path)
 
-    if len(get_includes(code_path)) == 0:
-        exit(0)
-
     # build include graph
     while que.empty() == False:
         path = que.get()
