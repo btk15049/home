@@ -5,7 +5,7 @@
       "// $1",
       "#ifdef BTK",
       "/*<head>*/",
-      "#\tinclude \"Template.hpp\"",
+      "#    include \"Template.hpp\"",
       "/*</head>*/",
       "#else",
       "/*<body>*/",
