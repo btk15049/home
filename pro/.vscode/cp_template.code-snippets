@@ -3,6 +3,12 @@
     "prefix": "btk_init",
     "body": [
       "// $1",
+      "#include <bits/stdc++.h>",
+      "#include <sys/types.h>",
+      "#include <unistd.h>",
+      "#define CIN_ONLY",
+      "#define DECIMAL_DIGITS 10",
+      "",
       "#ifdef BTK",
       "/*<head>*/",
       "#    include \"Template.hpp\"",
