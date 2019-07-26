@@ -13,12 +13,15 @@ pattern = r'[\s]*#[\s]*include[\s]*\"([^\"]+)\"'
 matcher = re.compile(pattern)
 
 lib_path = ''
+bs = '/*<stl>*/'
+es = '/*</stl>*/'
 bh = '/*<head>*/'
 eh = '/*</head>*/'
 bb = '/*<body>*/'
 eb = '/*</body>*/'
 
 
+# pathから改行を区切りにしてsplitした文字列の配列を取得
 def get_contents(path):
     contents = []
     with open(path) as f:
@@ -29,11 +32,17 @@ def get_contents(path):
 
 
 def begin_header(contents, word):
-    return contents.index(word)
+    if word not in contents:
+        return 0
+    else:
+        return contents.index(word)
 
 
 def end_header(contents, word):
-    return contents.index(word)+1
+    if word not in contents:
+        return 0
+    else:
+        return contents.index(word)+1
 
 
 def get_library(include_line):
@@ -75,7 +84,12 @@ def dfs(v):
 
 def get_inner_code(path):
     contents = get_contents(path)
-    return contents[: begin_header(contents, bh)] + contents[end_header(contents, eh):]
+    return contents[:begin_header(contents, bs)] + contents[end_header(contents, es): begin_header(contents, bh)] + contents[end_header(contents, eh):]
+
+
+def get_stl(path):
+    contents = get_contents(path)
+    return contents[begin_header(contents, bs):end_header(contents, es)]
 
 
 if __name__ == "__main__":
@@ -100,23 +114,21 @@ if __name__ == "__main__":
         dfs(key)
 
     i = 0
+    stl = []
     body = []
-    body.append('/* #region header */')
     for path in resolved_includes:
-        print('<'+str(i)+'>'+path, file=sys.stderr)
+        file_id = path[path.find('src/') + 4:]
+        stl.extend(get_stl(path))
+        print('<' + str(i) + '> ' + file_id, file=sys.stderr)
         i = i+1
-        body.append('/* #region ' + str(i) + '*/')
+        body.append('/* #region ' + file_id + '*/')
         body.extend(get_inner_code(path))
         body.append('/* #endregion */')
-    body.append('/* #endregion */')
-
+    stl = ["/* #region stl */"] + stl + ['/* #endregion */']
     main_contents = get_contents(code_path)
 
-    # for i in range(begin_header(main_contents, bh)+1, end_header(main_contents, eh)-1):
-    #     main_contents[i] = '// ' + main_contents[i]
-
     main_contents[begin_header(main_contents, bb) +
-                  1: end_header(main_contents, eb)-1] = body
+                  1: end_header(main_contents, eb)-1] = ['/* #region auto includes */'] + stl + body + ['/* #endregion */']
 
     with open(code_path, 'w') as f:
         f.write('\n'.join(main_contents))
