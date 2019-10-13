@@ -84,7 +84,10 @@ def dfs(v):
 
 def get_inner_code(path):
     contents = get_contents(path)
-    return contents[:begin_header(contents, bs)] + contents[end_header(contents, es): begin_header(contents, bh)] + contents[end_header(contents, eh):]
+    delimiter = [begin_header(contents, bh), end_header(
+        contents, eh), begin_header(contents, bs), end_header(contents, es)]
+    delimiter.sort()
+    return contents[:delimiter[0]] + contents[delimiter[1]: delimiter[2]] + contents[delimiter[3]:]
 
 
 def get_stl(path):
