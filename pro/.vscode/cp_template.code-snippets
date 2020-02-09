@@ -2,10 +2,10 @@
   "template": {
     "prefix": "btk_init",
     "body": [
-      "// $1",
+      "//$1",
       "#define CIN_ONLY",
       "#define DECIMAL_DIGITS 10",
-      "#define STATIC_MOD 1e9+7",
+      "#define STATIC_MOD 1e9 + 7",
       "",
       "#ifdef BTK",
       "/*<head>*/",
@@ -17,7 +17,8 @@
       "#endif",
       "",
       "int main() {",
-      "/* write here */",
+      "\t/* write here */",
+      "",
       "\treturn 0;",
       "}"
     ]
