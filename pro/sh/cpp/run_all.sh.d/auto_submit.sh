@@ -13,7 +13,7 @@ if [ ${KEY1} = "y" ]; then
         pwd
         ${SH_DIR}/../header_expand.sh ${2}
     fi
-    oj submit -y ${URL} ${2}
+    oj submit -y ${URL} ${2} --no-open
     echo "...done"
 else
     echo "no submission"
